@@ -1,0 +1,13 @@
+{
+  "name": "renderjson",
+  "_cacheHeaders": {
+    "ETag": "\"9d41d2d28fbd7582381d5c6b2466aaca97825075\"",
+    "Content-Length": "3285",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:9d41d2d28",
+  "main": "index.js",
+  "_source": "https://raw.githubusercontent.com/caldwell/renderjson/master/renderjson.js",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/caldwell/renderjson/master/renderjson.js"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "FileSaver.min",
+  "_cacheHeaders": {
+    "ETag": "\"c0792332aff62767b1a96fccef3eb0b7e678bcd2\"",
+    "Content-Length": "1421",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:c0792332a",
+  "main": "index.js",
+  "_source": "https://raw.githubusercontent.com/Teleborder/FileSaver.js/master/FileSaver.min.js",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/Teleborder/FileSaver.js/master/FileSaver.min.js"
+}

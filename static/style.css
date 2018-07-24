@@ -1,0 +1,46 @@
+html, body {
+  height: calc(100% - 10%);
+  margin: 2%;
+}
+
+h1 {
+  opacity: 1;
+  font-size: 100%;
+}
+
+h5 {
+  opacity: 0.75;
+}
+
+#inputForm {
+  height: 100%
+}
+
+.cy {
+  border: solid;
+  border-width: 0.5;
+  height: 100%;
+}
+
+.cy-container {
+  height: 100%;
+  padding-bottom:10px;
+}
+
+.btn-div{
+    padding-top:5px;
+    padding-bottom:5px;
+
+}
+
+.btn-evidence{
+  padding-top:5px;
+  padding-bottom:5px;
+  float: right;
+
+}
+
+body .modal-dialog {
+    /* new custom width */
+    width: 80%;
+}

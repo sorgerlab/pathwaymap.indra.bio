@@ -1,0 +1,934 @@
+{
+ "edges": [
+  {
+   "data": {
+    "i": "IncreaseAmount",
+    "id": 2,
+    "polarity": "positive",
+    "source": 0,
+    "target": 1,
+    "uuid_list": [
+     "a8b2f142-932c-4a4f-ae6f-80302eca5a41"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 4,
+    "polarity": "positive",
+    "source": 3,
+    "target": 3,
+    "uuid_list": [
+     "d415c034-447c-49ca-bc7f-f120a2aba0a2",
+     "52e7fe05-4cc4-429d-8819-b0d3a1f31fc8",
+     "d68b3716-24c8-4647-8353-1d66b2de798b"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 5,
+    "polarity": "positive",
+    "source": 3,
+    "target": 0,
+    "uuid_list": [
+     "499c8f45-989d-404e-a368-27366e569396"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 7,
+    "polarity": "positive",
+    "source": 3,
+    "target": 6,
+    "uuid_list": [
+     "b27391f4-37d0-4f1d-a0d9-7cd9d557ac43",
+     "f4ba543f-1bbc-4741-891d-602ee7b9aee7"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 9,
+    "polarity": "positive",
+    "source": 3,
+    "target": 8,
+    "uuid_list": [
+     "c2d4fb7c-b948-490f-b816-4f3b8c3638cb",
+     "293b892f-2997-414c-b676-39c31dfdb69a"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 11,
+    "polarity": "positive",
+    "source": 10,
+    "target": 3,
+    "uuid_list": [
+     "54c65c12-9255-455e-932d-14558275b8a6"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 13,
+    "polarity": "positive",
+    "source": 10,
+    "target": 12,
+    "uuid_list": [
+     "e6c600db-50b5-4b50-8c4e-11d97c12a477"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 14,
+    "polarity": "positive",
+    "source": 12,
+    "target": 3,
+    "uuid_list": [
+     "5166661c-b36b-4a17-b944-a2691efcc9d4",
+     "2b0c5d19-3c5d-4d02-bbe7-bb440a1e843c"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 15,
+    "polarity": "positive",
+    "source": 12,
+    "target": 0,
+    "uuid_list": [
+     "27ce7499-5acd-4ee9-a351-1716fb12ec62"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 16,
+    "polarity": "positive",
+    "source": 12,
+    "target": 6,
+    "uuid_list": [
+     "ccc0ab49-c627-415f-98ce-6b223e94033c"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 19,
+    "polarity": "positive",
+    "source": 17,
+    "target": 18,
+    "uuid_list": [
+     "ec67f89f-5f53-4fa4-a692-d4b55307eb46"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 22,
+    "polarity": "positive",
+    "source": 20,
+    "target": 21,
+    "uuid_list": [
+     "cee1bfdc-2468-40d3-a86c-b5ce211ee596",
+     "08f12c1f-0b9f-4ca6-a539-a64f51dde0ac"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 24,
+    "polarity": "positive",
+    "source": 20,
+    "target": 23,
+    "uuid_list": [
+     "033e8499-0cea-4ecf-a959-979643394064"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 26,
+    "polarity": "positive",
+    "source": 20,
+    "target": 25,
+    "uuid_list": [
+     "f92a539d-ced2-4405-9821-b585fe100ccf"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 27,
+    "polarity": "positive",
+    "source": 21,
+    "target": 20,
+    "uuid_list": [
+     "44664376-6b45-4be8-be9c-a0aeff74b710",
+     "f1838819-3273-4a82-bd2a-6fe326045098"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 29,
+    "polarity": "positive",
+    "source": 21,
+    "target": 28,
+    "uuid_list": [
+     "273657de-da97-4109-a76e-46e8b9356914",
+     "0264d4ef-065f-45bc-b63c-925390b0a11c",
+     "8aa93543-82cc-429e-9201-a62b22d4cbdd"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 31,
+    "polarity": "positive",
+    "source": 21,
+    "target": 30,
+    "uuid_list": [
+     "b81478a5-4b22-47ad-b3d4-754f391b843f",
+     "9aecefaa-a52b-4524-8c59-607454f62571"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 32,
+    "polarity": "positive",
+    "source": 8,
+    "target": 3,
+    "uuid_list": [
+     "05ec89ec-2760-4fb7-93a4-236b5768c0c5"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 33,
+    "polarity": "positive",
+    "source": 8,
+    "target": 10,
+    "uuid_list": [
+     "e5300594-963e-45f2-893b-ae7e0fd18ca1"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 34,
+    "polarity": "positive",
+    "source": 8,
+    "target": 12,
+    "uuid_list": [
+     "0263a40f-b57c-4404-9be5-c9cd59be5a3f"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 36,
+    "polarity": "positive",
+    "source": 8,
+    "target": 35,
+    "uuid_list": [
+     "c6518d10-553c-4345-a9ca-eb6911c9fa23"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 37,
+    "polarity": "positive",
+    "source": 8,
+    "target": 30,
+    "uuid_list": [
+     "e8f65b69-7f49-4afa-8bd6-639d1415adc5",
+     "9d564e55-d7f7-471b-98ab-b17dc137e39a",
+     "af394eed-49e6-4f09-b399-14f0ba47e52c"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 39,
+    "polarity": "positive",
+    "source": 38,
+    "target": 30,
+    "uuid_list": [
+     "ea874e5d-6891-439d-bf30-035d301c7baf"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 41,
+    "polarity": "positive",
+    "source": 40,
+    "target": 3,
+    "uuid_list": [
+     "514026b2-dc55-4d7d-be47-e9d16f08bdaa"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 42,
+    "polarity": "positive",
+    "source": 40,
+    "target": 10,
+    "uuid_list": [
+     "734b8a6a-b04e-4cdd-966e-5f362f0e7357"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 43,
+    "polarity": "positive",
+    "source": 40,
+    "target": 12,
+    "uuid_list": [
+     "e14219e0-4048-4477-b510-4583accca23c"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 44,
+    "polarity": "positive",
+    "source": 40,
+    "target": 30,
+    "uuid_list": [
+     "bdbdf2e8-b811-43d8-bcfa-b7938670aa50",
+     "31719c87-c975-4231-b162-cd98b431bf31"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 46,
+    "polarity": "positive",
+    "source": 1,
+    "target": 45,
+    "uuid_list": [
+     "647e9114-4d1b-466f-b370-ade479c6e063"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 48,
+    "polarity": "positive",
+    "source": 47,
+    "target": 3,
+    "uuid_list": [
+     "ac96b1a7-d5a1-445d-b94e-f53b0e272b0d",
+     "e186d3be-9d6e-4368-8974-a5487b5679fd"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 49,
+    "polarity": "positive",
+    "source": 47,
+    "target": 12,
+    "uuid_list": [
+     "0d0e18fc-af3d-4e18-8755-48cb9f7bba83"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 50,
+    "polarity": "positive",
+    "source": 47,
+    "target": 6,
+    "uuid_list": [
+     "78c881ac-c481-47c8-ae03-d1a97aff37a9"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 51,
+    "polarity": "positive",
+    "source": 47,
+    "target": 21,
+    "uuid_list": [
+     "5556b68a-d1b0-4bcb-b370-30381e049b09",
+     "137a232b-d5a3-4f47-aa8a-5b27269581ff"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 52,
+    "polarity": "positive",
+    "source": 18,
+    "target": 12,
+    "uuid_list": [
+     "2e48fa6e-447d-4bf9-957c-5afdee7162d7"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 54,
+    "polarity": "positive",
+    "source": 18,
+    "target": 53,
+    "uuid_list": [
+     "592816e7-ed2e-410d-8715-c2301baa1ef9"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 55,
+    "polarity": "positive",
+    "source": 25,
+    "target": 23,
+    "uuid_list": [
+     "b52b2a10-313e-446d-b299-7b1f95cb57e0"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 57,
+    "polarity": "positive",
+    "source": 28,
+    "target": 56,
+    "uuid_list": [
+     "d00af504-9b0b-4cba-8455-34d07f5c3418"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 58,
+    "polarity": "positive",
+    "source": 30,
+    "target": 8,
+    "uuid_list": [
+     "9ccaf0e2-de31-4b2d-bb16-9a57d2d3f8c5",
+     "15f73108-1001-4228-bff9-7933a10670a6"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 59,
+    "polarity": "positive",
+    "source": 30,
+    "target": 56,
+    "uuid_list": [
+     "767bbe24-b2bd-4371-8707-29821242ddd4",
+     "1cf267de-d400-4646-9276-85b881247076",
+     "d81dabea-208e-4cdf-a8fb-dbf044c717e3",
+     "b9bde8f1-178f-438e-9ce4-de31f60d9694",
+     "2022c70c-2257-43d9-9f08-7e224fff0964",
+     "dcd99459-c1fa-42aa-acb0-8a976c2d0c0d"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 60,
+    "polarity": "positive",
+    "source": 53,
+    "target": 3,
+    "uuid_list": [
+     "37431b58-f26b-45c3-8445-ede21b2aeefd"
+    ]
+   }
+  },
+  {
+   "data": {
+    "i": "Phosphorylation",
+    "id": 61,
+    "polarity": "positive",
+    "source": 53,
+    "target": 12,
+    "uuid_list": [
+     "dc8e5e89-aca1-4f01-bc3d-e4251436c6c2"
+    ]
+   }
+  }
+ ],
+ "nodes": [
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:3467",
+     "UniProt": "http://identifiers.org/uniprot/P03372"
+    },
+    "id": 0,
+    "members": {},
+    "name": "ESR1",
+    "parent": "",
+    "uuid_list": [
+     "a8b2f142-932c-4a4f-ae6f-80302eca5a41",
+     "499c8f45-989d-404e-a368-27366e569396",
+     "27ce7499-5acd-4ee9-a351-1716fb12ec62"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:9077",
+     "UniProt": "http://identifiers.org/uniprot/P53350"
+    },
+    "id": 1,
+    "members": {},
+    "name": "PLK1",
+    "parent": "",
+    "uuid_list": [
+     "a8b2f142-932c-4a4f-ae6f-80302eca5a41",
+     "647e9114-4d1b-466f-b370-ade479c6e063"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:391",
+     "UniProt": "http://identifiers.org/uniprot/P31749"
+    },
+    "id": 3,
+    "members": {},
+    "name": "AKT1",
+    "parent": "",
+    "uuid_list": [
+     "d415c034-447c-49ca-bc7f-f120a2aba0a2",
+     "52e7fe05-4cc4-429d-8819-b0d3a1f31fc8",
+     "499c8f45-989d-404e-a368-27366e569396",
+     "b27391f4-37d0-4f1d-a0d9-7cd9d557ac43",
+     "c2d4fb7c-b948-490f-b816-4f3b8c3638cb",
+     "d68b3716-24c8-4647-8353-1d66b2de798b",
+     "f4ba543f-1bbc-4741-891d-602ee7b9aee7",
+     "293b892f-2997-414c-b676-39c31dfdb69a",
+     "54c65c12-9255-455e-932d-14558275b8a6",
+     "5166661c-b36b-4a17-b944-a2691efcc9d4",
+     "2b0c5d19-3c5d-4d02-bbe7-bb440a1e843c",
+     "05ec89ec-2760-4fb7-93a4-236b5768c0c5",
+     "514026b2-dc55-4d7d-be47-e9d16f08bdaa",
+     "ac96b1a7-d5a1-445d-b94e-f53b0e272b0d",
+     "e186d3be-9d6e-4368-8974-a5487b5679fd",
+     "37431b58-f26b-45c3-8445-ede21b2aeefd"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:4617",
+     "UniProt": "http://identifiers.org/uniprot/P49841"
+    },
+    "id": 6,
+    "members": {},
+    "name": "GSK3B",
+    "parent": "",
+    "uuid_list": [
+     "b27391f4-37d0-4f1d-a0d9-7cd9d557ac43",
+     "f4ba543f-1bbc-4741-891d-602ee7b9aee7",
+     "ccc0ab49-c627-415f-98ce-6b223e94033c",
+     "78c881ac-c481-47c8-ae03-d1a97aff37a9"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:3942",
+     "UniProt": "http://identifiers.org/uniprot/P42345"
+    },
+    "id": 8,
+    "members": {},
+    "name": "MTOR",
+    "parent": "",
+    "uuid_list": [
+     "c2d4fb7c-b948-490f-b816-4f3b8c3638cb",
+     "293b892f-2997-414c-b676-39c31dfdb69a",
+     "05ec89ec-2760-4fb7-93a4-236b5768c0c5",
+     "e5300594-963e-45f2-893b-ae7e0fd18ca1",
+     "0263a40f-b57c-4404-9be5-c9cd59be5a3f",
+     "c6518d10-553c-4345-a9ca-eb6911c9fa23",
+     "e8f65b69-7f49-4afa-8bd6-639d1415adc5",
+     "9d564e55-d7f7-471b-98ab-b17dc137e39a",
+     "af394eed-49e6-4f09-b399-14f0ba47e52c",
+     "9ccaf0e2-de31-4b2d-bb16-9a57d2d3f8c5",
+     "15f73108-1001-4228-bff9-7933a10670a6"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:392",
+     "UniProt": "http://identifiers.org/uniprot/P31751"
+    },
+    "id": 10,
+    "members": {},
+    "name": "AKT2",
+    "parent": "",
+    "uuid_list": [
+     "54c65c12-9255-455e-932d-14558275b8a6",
+     "e6c600db-50b5-4b50-8c4e-11d97c12a477",
+     "e5300594-963e-45f2-893b-ae7e0fd18ca1",
+     "734b8a6a-b04e-4cdd-966e-5f362f0e7357"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:393",
+     "UniProt": "http://identifiers.org/uniprot/Q9Y243"
+    },
+    "id": 12,
+    "members": {},
+    "name": "AKT3",
+    "parent": "",
+    "uuid_list": [
+     "e6c600db-50b5-4b50-8c4e-11d97c12a477",
+     "5166661c-b36b-4a17-b944-a2691efcc9d4",
+     "2b0c5d19-3c5d-4d02-bbe7-bb440a1e843c",
+     "27ce7499-5acd-4ee9-a351-1716fb12ec62",
+     "ccc0ab49-c627-415f-98ce-6b223e94033c",
+     "0263a40f-b57c-4404-9be5-c9cd59be5a3f",
+     "e14219e0-4048-4477-b510-4583accca23c",
+     "0d0e18fc-af3d-4e18-8755-48cb9f7bba83",
+     "2e48fa6e-447d-4bf9-957c-5afdee7162d7",
+     "dc8e5e89-aca1-4f01-bc3d-e4251436c6c2"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:1057",
+     "UniProt": "http://identifiers.org/uniprot/P51451"
+    },
+    "id": 17,
+    "members": {},
+    "name": "BLK",
+    "parent": "",
+    "uuid_list": [
+     "ec67f89f-5f53-4fa4-a692-d4b55307eb46"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:9611",
+     "UniProt": "http://identifiers.org/uniprot/Q05397"
+    },
+    "id": 18,
+    "members": {},
+    "name": "PTK2",
+    "parent": "",
+    "uuid_list": [
+     "ec67f89f-5f53-4fa4-a692-d4b55307eb46",
+     "2e48fa6e-447d-4bf9-957c-5afdee7162d7",
+     "592816e7-ed2e-410d-8715-c2301baa1ef9"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:6840",
+     "UniProt": "http://identifiers.org/uniprot/Q02750"
+    },
+    "id": 20,
+    "members": {},
+    "name": "MAP2K1",
+    "parent": "",
+    "uuid_list": [
+     "cee1bfdc-2468-40d3-a86c-b5ce211ee596",
+     "08f12c1f-0b9f-4ca6-a539-a64f51dde0ac",
+     "033e8499-0cea-4ecf-a959-979643394064",
+     "f92a539d-ced2-4405-9821-b585fe100ccf",
+     "44664376-6b45-4be8-be9c-a0aeff74b710",
+     "f1838819-3273-4a82-bd2a-6fe326045098"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:6871",
+     "UniProt": "http://identifiers.org/uniprot/P28482"
+    },
+    "id": 21,
+    "members": {},
+    "name": "MAPK1",
+    "parent": "",
+    "uuid_list": [
+     "cee1bfdc-2468-40d3-a86c-b5ce211ee596",
+     "08f12c1f-0b9f-4ca6-a539-a64f51dde0ac",
+     "44664376-6b45-4be8-be9c-a0aeff74b710",
+     "f1838819-3273-4a82-bd2a-6fe326045098",
+     "273657de-da97-4109-a76e-46e8b9356914",
+     "0264d4ef-065f-45bc-b63c-925390b0a11c",
+     "8aa93543-82cc-429e-9201-a62b22d4cbdd",
+     "b81478a5-4b22-47ad-b3d4-754f391b843f",
+     "9aecefaa-a52b-4524-8c59-607454f62571",
+     "5556b68a-d1b0-4bcb-b370-30381e049b09",
+     "137a232b-d5a3-4f47-aa8a-5b27269581ff"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:6877",
+     "UniProt": "http://identifiers.org/uniprot/P27361"
+    },
+    "id": 23,
+    "members": {},
+    "name": "MAPK3",
+    "parent": "",
+    "uuid_list": [
+     "033e8499-0cea-4ecf-a959-979643394064",
+     "b52b2a10-313e-446d-b299-7b1f95cb57e0"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:9829",
+     "UniProt": "http://identifiers.org/uniprot/P04049"
+    },
+    "id": 25,
+    "members": {},
+    "name": "RAF1",
+    "parent": "",
+    "uuid_list": [
+     "f92a539d-ced2-4405-9821-b585fe100ccf",
+     "b52b2a10-313e-446d-b299-7b1f95cb57e0"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:10430",
+     "UniProt": "http://identifiers.org/uniprot/Q15418"
+    },
+    "id": 28,
+    "members": {},
+    "name": "RPS6KA1",
+    "parent": "",
+    "uuid_list": [
+     "273657de-da97-4109-a76e-46e8b9356914",
+     "0264d4ef-065f-45bc-b63c-925390b0a11c",
+     "8aa93543-82cc-429e-9201-a62b22d4cbdd",
+     "d00af504-9b0b-4cba-8455-34d07f5c3418"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:10436",
+     "UniProt": "http://identifiers.org/uniprot/P23443"
+    },
+    "id": 30,
+    "members": {},
+    "name": "RPS6KB1",
+    "parent": "",
+    "uuid_list": [
+     "b81478a5-4b22-47ad-b3d4-754f391b843f",
+     "9aecefaa-a52b-4524-8c59-607454f62571",
+     "e8f65b69-7f49-4afa-8bd6-639d1415adc5",
+     "9d564e55-d7f7-471b-98ab-b17dc137e39a",
+     "af394eed-49e6-4f09-b399-14f0ba47e52c",
+     "ea874e5d-6891-439d-bf30-035d301c7baf",
+     "bdbdf2e8-b811-43d8-bcfa-b7938670aa50",
+     "31719c87-c975-4231-b162-cd98b431bf31",
+     "9ccaf0e2-de31-4b2d-bb16-9a57d2d3f8c5",
+     "767bbe24-b2bd-4371-8707-29821242ddd4",
+     "1cf267de-d400-4646-9276-85b881247076",
+     "15f73108-1001-4228-bff9-7933a10670a6",
+     "d81dabea-208e-4cdf-a8fb-dbf044c717e3",
+     "b9bde8f1-178f-438e-9ce4-de31f60d9694",
+     "2022c70c-2257-43d9-9f08-7e224fff0964",
+     "dcd99459-c1fa-42aa-acb0-8a976c2d0c0d"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:3288",
+     "UniProt": "http://identifiers.org/uniprot/Q13541"
+    },
+    "id": 35,
+    "members": {},
+    "name": "EIF4EBP1",
+    "parent": "",
+    "uuid_list": [
+     "c6518d10-553c-4345-a9ca-eb6911c9fa23"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:8816",
+     "UniProt": "http://identifiers.org/uniprot/O15530"
+    },
+    "id": 38,
+    "members": {},
+    "name": "PDPK1",
+    "parent": "",
+    "uuid_list": [
+     "ea874e5d-6891-439d-bf30-035d301c7baf"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:8975",
+     "UniProt": "http://identifiers.org/uniprot/P42336"
+    },
+    "id": 40,
+    "members": {},
+    "name": "PIK3CA",
+    "parent": "",
+    "uuid_list": [
+     "514026b2-dc55-4d7d-be47-e9d16f08bdaa",
+     "734b8a6a-b04e-4cdd-966e-5f362f0e7357",
+     "e14219e0-4048-4477-b510-4583accca23c",
+     "bdbdf2e8-b811-43d8-bcfa-b7938670aa50",
+     "31719c87-c975-4231-b162-cd98b431bf31"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:16627",
+     "UniProt": "http://identifiers.org/uniprot/O96017"
+    },
+    "id": 45,
+    "members": {},
+    "name": "CHEK2",
+    "parent": "",
+    "uuid_list": [
+     "647e9114-4d1b-466f-b370-ade479c6e063"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:9393",
+     "UniProt": "http://identifiers.org/uniprot/P17252"
+    },
+    "id": 47,
+    "members": {},
+    "name": "PRKCA",
+    "parent": "",
+    "uuid_list": [
+     "ac96b1a7-d5a1-445d-b94e-f53b0e272b0d",
+     "e186d3be-9d6e-4368-8974-a5487b5679fd",
+     "0d0e18fc-af3d-4e18-8755-48cb9f7bba83",
+     "78c881ac-c481-47c8-ae03-d1a97aff37a9",
+     "5556b68a-d1b0-4bcb-b370-30381e049b09",
+     "137a232b-d5a3-4f47-aa8a-5b27269581ff"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:11283",
+     "UniProt": "http://identifiers.org/uniprot/P12931"
+    },
+    "id": 53,
+    "members": {},
+    "name": "SRC",
+    "parent": "",
+    "uuid_list": [
+     "592816e7-ed2e-410d-8715-c2301baa1ef9",
+     "37431b58-f26b-45c3-8445-ede21b2aeefd",
+     "dc8e5e89-aca1-4f01-bc3d-e4251436c6c2"
+    ]
+   }
+  },
+  {
+   "data": {
+    "db_refs": {
+     "HGNC": "http://identifiers.org/hgnc/HGNC:10429",
+     "UniProt": "http://identifiers.org/uniprot/P62753"
+    },
+    "id": 56,
+    "members": {},
+    "name": "RPS6",
+    "parent": "",
+    "uuid_list": [
+     "d00af504-9b0b-4cba-8455-34d07f5c3418",
+     "767bbe24-b2bd-4371-8707-29821242ddd4",
+     "1cf267de-d400-4646-9276-85b881247076",
+     "d81dabea-208e-4cdf-a8fb-dbf044c717e3",
+     "b9bde8f1-178f-438e-9ce4-de31f60d9694",
+     "2022c70c-2257-43d9-9f08-7e224fff0964",
+     "dcd99459-c1fa-42aa-acb0-8a976c2d0c0d"
+    ]
+   }
+  }
+ ]
+}
