@@ -1,6 +1,6 @@
 var api_spec = {
   "swagger": "2.0",
-  "host": "localhost:8080",
+  "host": "api.indra.bio:8000",
   "schemes": [
     "http"
   ],
