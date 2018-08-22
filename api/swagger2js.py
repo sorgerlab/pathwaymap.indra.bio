@@ -8,7 +8,7 @@ filename = [x for x in os.listdir() if '.json' in x][0]
 #     swagger = json.load(file)
 swagger = json.load(open(filename), object_pairs_hook=OrderedDict)
 
-swagger['host'] = 'localhost:8080'
+swagger['host'] = 'api.indra.bio:8000'
 
 js_str = 'var api_spec = '
 js_str += json.dumps(swagger, indent=2, sort_keys=False)
