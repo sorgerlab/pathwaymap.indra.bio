@@ -82,19 +82,18 @@
     <div class="container-fluid">
 
     <div class=row>
-        <div class="col-md-12">
-            <h1><img src="indra_logo_v2.png" alt="INDRA logo" style="height:30px;"></img> INDRA </h1>
-            <h5>Integrated Network and Dynamical Reasoning Assembler </h5>
+        <div class="col-sm-6 col-xs-6 padding-0">
+            <img src="indra_logo_v2.png" alt="INDRA logo" style="height:30px;"></img> <span class="hidden-xs" style="font:30px bold;">INDRA-IPM</span>
         </div>
-    </div>
-
-    <div class=row>
-      <div class='col-md-12'>
+        <!-- <div class="col-sm-4 col-xs-4 hidden-xs pull-left padding-0" style="font:30px bold;">INDRA-IPM</div> -->
+      <div class='col-sm-6 col-xs-6 pull-right'>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#menu">
+
+            <button type="button" class="btn btn-default btn-lg pull-right" data-toggle="modal" data-target="#menu">
             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-            <b>MODEL OPTIONS</b>
-        </button>
+            <b class="hidden-xs">MODEL OPTIONS</b>
+            </button>
+
 
 
 
@@ -102,29 +101,34 @@
         <div class="modal" id="menu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
+                    <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+                          </div>
               <div class="modal-body">
                   <div class="tabbable">
                   <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#ras227">Prebuilt models</a></li>
-                    <li ><a data-toggle="tab" href="#byom">Build</a></li>
+                    <li class="active"><a data-toggle="tab" href="#byom">Build</a></li>
                     <li ><a data-toggle="tab" href="#context">Context</a></li>
                     <!-- <li ><a data-toggle="tab" href="#phospho">Phospho</a></li> -->
+                    <li ><a data-toggle="tab" href="#ras227">Prebuilt models</a></li>
                     <li ><a data-toggle="tab" href="#about">About</a></li>
                   </ul>
 
                 <div class="tab-content">
-                  <div id="ras227" class="tab-pane fade in active">
+                  <div id="ras227" class="tab-pane fade in">
                     <div>
                         <br>
                         <div>
-                            <select id='model_picker' class="selectpicker"></select>
+                            <select id='model_picker' class="selectpicker">
+                                <option value="McCormick">NCI RAS Pathway 1.0</option>
+                            </select>
                         </div>
                     </div>
                     <br>
                     <button id='loadButtonStatic' type="submit" class="btn btn-primary">Load</button>
                   </div>
 
-                  <div id="byom" class="tab-pane fade in">
+                  <div id="byom" class="tab-pane fade in active">
     <br>
     <div>
       <form>
@@ -248,7 +252,8 @@ TIAM activates RAC, which activates PAK.
                               <li>Wild-type genes are colored <font color="green">green.</font></li>
                               <li>Mutated genes are colored <font color="orange">orange.</font></li>
                               <li>The intensity of each color corresponds to the expression level of a gene in CCLE.</li>
-                              <li>Clicking a node provides additional context via CiteAb, HGNC, and UniProt.</li>
+                              <li>Clicking any node provides additional context by linking out to CiteAb, HGNC, and UniProt.</li>
+                              <li>Clicking any edge will allow a user to filter the sources and targets of that edge and make a request for evidence found in literature and curated database that is stored in INDRA DB.</li>
                               <li><a href="https://www.cancer.gov/research/key-initiatives/ras/ras-central/blog/2014/what-do-we-mean-ras-pathway">The RAS Pathway Map</a> model was drawn by Dr. Frank McCormick at the NCI RAS Initiative.</li>
                           </ul>
                           <br>
@@ -263,7 +268,7 @@ TIAM activates RAC, which activates PAK.
                           <br>
                           <h4>Model context</h4>
                           <ul>
-                              <li>Network models can be contextualized using Context tab.</li>
+                              <li>Network models can be contextualized using the Context tab.</li>
                               <li>Users can load gene expression and mutation data from each of the 900+ cell lines available in the <a href="https://portals.broadinstitute.org/ccle">CCLE</a>.</li>
                               <li>We access a publicly available version of the CCLE hosted on <a href="http://www.cbioportal.org/">cBio Portal</a>.</li>
                           </ul>
@@ -271,10 +276,20 @@ TIAM activates RAC, which activates PAK.
                           <h4>How does this work?</h4>
                           <ul>
                               <li>All models are generated using <a href="https://github.com/sorgerlab/indra">INDRA</a> developed by the <a href="http://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/about/">Laboratory of Systems Pharmacology</a> at Harvard Medical School.</li>
+                              <li>The underlying API is available at <a href="api.indra.bio:8000">api.indra.bio:8000</a> and documented at: <a href="http://pathwaymap.indra.bio/api">http://pathwaymap.indra.bio/api</a></li>
                               <li>Natural language processing is done using the <a href="https://github.com/clulab/reach">REACH</a> natural language processor developed by the CLU Lab at the University of Arizona or the <a href="https://www.ihmc.us/trips/">TRIPS</a> processor developed by IHMC.</li>
                               <li>Interactive network visualizations are implemented in <a href="http://js.cytoscape.org">cytoscape.js</a></li>
-                              <li><a href="http://www.colorbrewer2.org">Colorbrewer2</a> was used to select colorscales for models.</li>
+                              <li><a href="http://www.colorbrewer2.org">Colorbrewer2</a> was used to select colorscales for models rendered with D3.js</li>
                           </ul>
+                          <br>
+                          <h4>Funding</h4>
+                            <ul>
+                            <li>This work was funded by ARO Grants W911NF‐14‐1‐0397 and W911NF‐15‐1‐0544 under the DARPA Big Mechanism and Communicating with Computers programs, and by NIGMS Grant P50GM107618 to Peter K. Sorger.</li>
+                            </ul>
+                            <h4>Privacy</h4>
+                            <ul>
+                            <li>Our API backend receives requests such as those for reading, contextualization, and NDEX sharing. Our server logs the IP addresses which make reqeusts to the API. The data from some user requests is forwarded to external APIs such as TRIPS (reading) and cBioPortal (contextualization) in order to generate responses. Some of the plugins we use such as d3.js require cookies.</li>
+                            </ul>
                       </div>
                   </div>
                 </div>
@@ -300,16 +315,17 @@ TIAM activates RAC, which activates PAK.
   </div>
   <div class="row" align="center">
     <div class="col-md-12">
-              <b>Download as</b>
-              <button id='downloadINDRA' type="submit" class="btn btn-default">INDRA JSON</button>
-              <button id='downloadPySB' type="submit" class="btn btn-default">PySB</button>
-              <button id='downloadSBML' type="submit" class="btn btn-default">SBML</button>
-              <button id='downloadSBGN' type="submit" class="btn btn-default">SBGN</button>
-              <button id='downloadBNGL' type="submit" class="btn btn-default">BNGL</button>
-              <button id='downloadKappa' type="submit" class="btn btn-default">Kappa</button>
-              <button id='downloadCX' type="submit" class="btn btn-default">CX</button>
-              <button id='NDEX' type="submit" class="btn btn-default" data-toggle="modal" data-target="#ndexModal">NDEX</button>
+              <b>Download</b>
+              <button id='downloadINDRA' type="submit" class="btn btn-default hidden-xs">INDRA JSON</button>
+              <button id='downloadPySB' type="submit" class="btn btn-default hidden-xs">PySB</button>
+              <button id='downloadSBML' type="submit" class="btn btn-default hidden-xs">SBML</button>
+              <button id='downloadSBGN' type="submit" class="btn btn-default hidden-xs">SBGN</button>
+              <button id='downloadBNGL' type="submit" class="btn btn-default hidden-xs">BNGL</button>
+              <button id='downloadKappa' type="submit" class="btn btn-default hidden-xs">Kappa</button>
+              <button id='downloadCX' type="submit" class="btn btn-default hidden-xs">CX</button>
               <button id='downloadPNG' type="submit" class="btn btn-default">PNG</button>
+              <span>|</span>
+              <button id='NDEX' type="submit" class="btn btn-default" data-toggle="modal" data-target="#ndexModal">NDEX</button>
     <!-- graph : end -->
   </div>
   </div>
@@ -318,10 +334,28 @@ TIAM activates RAC, which activates PAK.
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="exampleModalLabel">NDEX Upload</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+          <h4 class="modal-title" id="exampleModalLabel">NDEX</h4>
         </div>
-        <div class="modal-body"></div>
+        <div class="modal-body">
+                <div>
+                    <h4>NDEX Download</h4>
+                    <div class="form-group">
+                        <label for="ndexUUID"></label>
+                        <input type="email" class="form-control" id="ndexUUID" placeholder="e.g. - ea778a86-91b9-11e8-a4bf-0ac135e8bacf">
+                    </div>
+                    <div class= 'btn-div'>
+                        <button id='loadNDEX' type="submit" class="btn btn-primary">Load</button>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <h4>NDEX Upload</h4>
+                    <div class="ndex-upload-container"></div>
+                    <button id='NDEX_upload_btn' type="submit" class="btn btn-primary">Upload</button>
+
+                </div>   
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
@@ -338,8 +372,11 @@ TIAM activates RAC, which activates PAK.
           <h4 class="modal-title" id="exampleModalLabel">Edge statements</h4>
         </div>
         <div class="modal-body">
+            <h4>Sources</h4>
             <div class="edgeModal-sources btn-div"></div>
+            <h4>Targets</h4>
             <div class="edgeModal-targets btn-div"></div>
+            <br>
             <div class="edgeModal-stmtsbox"></div>
         </div>
         <div class="modal-footer">

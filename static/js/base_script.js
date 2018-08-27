@@ -12,22 +12,42 @@ var scapes = {};
 var stmts;
 var sentences;
 var evidence = {};
+var cyjs_elements; //this is set by drawCytoscape with a copy of model_elements
+var model_elements;
+var mrna;
+var mutations;
+var cell_line;
+var txt_input;
+var network_id;
 
 var indra_server_addr = "http://indra-api-72031e2dfde08e09.elb.us-east-1.amazonaws.com:8000";
 //var indra_server_addr = "http://0.0.0.0:8080";
 
 var ctxt = {};
 
-var ras_model_promise = grabJSON('static/models/McCormick/model.json');
-var ras_preset_pos_promise = grabJSON('static/models/McCormick/preset_pos.json');
-var model_components_promise = Promise.all([ras_model_promise, ras_preset_pos_promise]);
-var ras_stmts_promise = grabJSON('static/models/McCormick/stmts.json');
+var ras_model_promise = grabJSON('static/models/' + prebuilt_model + '/model.json');
+var ras_preset_pos_promise = grabJSON('static/models/' + prebuilt_model + '/preset_pos.json');
+var mrna_promise = grabJSON('static/models/' + prebuilt_model + '/mrna.json');
+var mutations_promise = grabJSON('static/models/' + prebuilt_model + '/mutations.json');
+var model_components_promise = Promise.all([ras_model_promise, ras_preset_pos_promise, mrna_promise, mutations_promise]);
+model_components_promise.then(function(promises){
+  preset_pos = promises[1];
+  model_elements = promises[0];
+  mrna = promises[2];
+  mutations = promises[3];
+  drawCytoscape ('cy_1', model_elements);
+  clearUploadInfo();
+  qtipNodes(scapes['cy_1']);
+  scapes['cy_1'].fit();
+  contextualizeNodesCCLEprebuilt(scapes['cy_1'], mrna, mutations)
+})
+var ras_stmts_promise = grabJSON('static/models/' + prebuilt_model + '/stmts.json');
 var ras_stmts_response;
 ras_stmts_promise.then(function(res){
   ras_stmts_response = res;
   stmts = ras_stmts_response;
 })
-var ras_sentences_promise = grabJSON('static/models/McCormick/sentences.json');
+var ras_sentences_promise = grabJSON('static/models/' + prebuilt_model + '/sentences.json');
 var ras_sentences_response;
 ras_sentences_promise.then(function(res){
   ras_sentences_response = res;
@@ -68,7 +88,7 @@ $(function(){
   // build the dropdown pickers
   grabJSON('static/cell_dict.json').then(
     function(ajax_response){
-      var interesting_lines = {"A101D_SKIN":"model_A101D_SKIN.json", "LOXIMVI_SKIN":"model_LOXIMVI_SKIN.json"};
+      var interesting_lines = {"LOXIMVI_SKIN":"model_LOXIMVI_SKIN.json", "A101D_SKIN":"model_A101D_SKIN.json"};
       for (var d of ['#cellSelectStatic', '#cellSelectDynamic']) {
           dropdownFromJSON(d, interesting_lines);
           $(d).append($('<option data-divider="true"/>'));
@@ -82,7 +102,6 @@ $(function(){
 
   $("#loadButtonDynamic").click(function(){
     var txt = $('#textArea')[0].value;
-    
     var stmts_promise = txtProcess(txt, parser).then(groundingMapper);
     var cyjs_promise = stmts_promise.then(assembleCyJS);
     var english_promise = stmts_promise.then(assembleEnglish)
@@ -91,19 +110,20 @@ $(function(){
       stmts = model_response;
     });
     cyjs_promise.then(function (model_response) {
+      model_elements = model_response;
       drawCytoscape('cy_1', model_response);
+      clearUploadInfo();
       qtipNodes(scapes['cy_1']);
       $('#menu').modal('hide');
+      document.getElementById("loadContextButton").click();
     });
     english_promise.then(function (model_response) {
       sentences = model_response;
     })
-    
-    $('.cyjs2loopy').prop('disabled', false);
   });
 
   $("#loadContextButton").click(function(){
-    var cell_line = $('#cellSelectDynamic').val().slice(6,-5);
+    cell_line = $('#cellSelectDynamic').val().slice(6,-5);
     contextualizeNodesCCLE(cy, cell_line);
     $('#menu').modal('hide');
   });
@@ -150,18 +170,18 @@ $(function(){
     });
   });
 
-  $("#NDEX").click(function(){
-    var txt = $('#textArea')[0].value;
-    var modal = $('#ndexModal')
-    var modal_body = modal.find('.modal-body')[0]
+  $("#NDEX_upload_btn").click(function(){
+    var modal_body = $('.ndex-upload-container')[0]
     modal_body.innerHTML = null
     var par = document.createElement("p");
     par.textContent = 'Uploading model to NDEX...'
     modal_body.append(par)
-    txtProcess(txt, parser).then(groundingMapper).then(shareNDEX).then(function (res) {
+    txt_input = $('#textArea')[0].value;
+    shareNDEX(cyjs_elements, preset_pos, stmts, sentences, evidence, cell_line, mrna, mutations, txt_input, parser).then(function (res) {
       par.textContent = 'Network uploaded to NDEX.'
       var par2 = document.createElement("p");
-      var network_address =  "http://ndexbio.org/#/network/" + res['network_id']
+      network_id = res['network_id']
+      var network_address =  "http://ndexbio.org/#/network/" + network_id
       var temp_link = document.createElement("a");
       temp_link.href = network_address;
       temp_link.text = network_address;
@@ -170,6 +190,41 @@ $(function(){
       modal_body.append(par2);
     });
   });
+
+
+  $("#loadNDEX").click(function(){
+    var network_id = $("#ndexUUID")[0].value
+    getNDEX(network_id).then(function (res) {
+      model_elements = JSON.parse(res.model_elements)
+      preset_pos = JSON.parse(res.preset_pos)
+      stmts = JSON.parse(res.stmts)
+      sentences = JSON.parse(res.sentences)
+      evidence = JSON.parse(res.evidence)
+      cell_line = res.cell_line
+      $('#cellSelectDynamic').selectpicker()[0].value = 'model_' + cell_line + '.json'
+      $('#cellSelectDynamic').selectpicker('refresh')
+      mrna = JSON.parse(res.mrna)
+      mutations = JSON.parse(res.mutations)
+      txt_input = res.txt_input;
+      $('#textArea').val(txt_input);
+      parser = res.parser;
+      $("#parseReach")[0].classList.remove('active')
+      $("#parseTrips")[0].classList.remove('active')
+      if (parser == 'trips'){
+        $("#parseTrips").addClass("active");
+      }
+      else {
+        $("#parseReach").addClass("active");
+      }
+      drawCytoscape ('cy_1', model_elements);
+      clearUploadInfo();
+      qtipNodes(scapes['cy_1']);
+      scapes['cy_1'].fit();
+      contextualizeNodesCCLEprebuilt(scapes['cy_1'], mrna, mutations)
+      $('#ndexModal').modal('hide');
+    });
+  });
+
 
   $("#downloadINDRA").click(function(){
     var txt = $('#textArea')[0].value;
@@ -205,17 +260,22 @@ $(function(){
 
 
 $("#loadButtonStatic").click(function(){
-  model_components_promise.then(function (promises) {
+  model_promise = grabJSON('static/models/' + prebuilt_model + '/model.json');
+  preset_pos_promise = grabJSON('static/models/' + prebuilt_model + '/preset_pos.json');
+  txt_input_promise = grabJSON('static/models/' + prebuilt_model + '/txt_input.json', dtype='text');
+  var model_components_promise = Promise.all([model_promise, preset_pos_promise, txt_input_promise]);
+  model_components_promise.then(function(promises){
     preset_pos = promises[1];
-    var model_response = promises[0];
-    drawCytoscape ('cy_1', model_response);
+    model_elements = promises[0];
+    txt_input = promises[2];
+    drawCytoscape ('cy_1', model_elements);
+    clearUploadInfo();
     qtipNodes(scapes['cy_1']);
+    $('#textArea').val(txt_input);
     scapes['cy_1'].fit();
-    modalEdges(cy);
-    scapes['cy_1'].fit();
-  });
-  var stmts = ras_stmts_response;
-  var sentences = ras_sentences_response;
+    document.getElementById("loadContextButton").click();
+  })
+
 });
 
 $(".cyjs2loopy").click(function(){
@@ -295,7 +355,9 @@ $("#reset_filter").click(function(){
   clearCtxtSelects();
   build_ctx_dropdowns(sub_select_array, ctx_select_divs, current_ctx_selection);
   grabJSON('static/models/' + prebuilt_model + '/model.json').then(function (model_response) {
+    model_elements = model_response;
     drawCytoscape ('cy_1', model_response);
+    clearUploadInfo();
     qtipNodes(scapes['cy_1']);
   });
 });
@@ -320,7 +382,7 @@ $('#path_table').on( 'click', 'tr', function () {
 
 $('.cy').each(function(){
   $('.cy')[0].setAttribute("style", "height: 100%;");
-  document.getElementById("loadButtonStatic").click();
+  // document.getElementById("loadButtonStatic").click();
   function resize() {
     $(".cy-container").height(win.innerHeight() - 250);
     $(".cy").height(win.innerHeight() - 250);
@@ -340,3 +402,8 @@ $('.cy').each(function(){
 });
 
 });// dom ready
+
+function clearUploadInfo(){
+  var modal_body = $('.ndex-upload-container')[0]
+  modal_body.innerHTML = null
+}

@@ -42,5 +42,11 @@ h5 {
 
 body .modal-dialog {
     /* new custom width */
-    width: 80%;
+    width: 92%;
+    height: 100%;
+}
+
+padding-0{
+  padding-right:0;
+  padding-left:0;
 }

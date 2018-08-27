@@ -173,7 +173,14 @@ function getStatementsByUUID(uuid_list, stmts_list){
 
 function statementPanelAddEvidence(button_ele){
     let parent_panel = ($(button_ele).parent().parent().parent().parent()[0]);
-    $(parent_panel).find(".ev-panel" ).remove();
+    $(parent_panel).find(".ev-grid-container").remove();
+    var grid_container = document.createElement('div');
+    grid_container.classList.add('container-fluid', 'ev-grid-container');
+    grid_container.appendChild(document.createElement('br'))
+    var parent_panel_row = document.createElement("div");
+    parent_panel_row.classList.add('row', 'parent-panel-row');
+    grid_container.append(parent_panel_row);
+    parent_panel.appendChild(grid_container);
     let uuid = button_ele.dataset.id;
     let evidence_stmts = evidence[uuid];
     var evs = [];
@@ -182,26 +189,48 @@ function statementPanelAddEvidence(button_ele){
 		    evs.push([ev.text, ev.pmid])
 	    }
     }
-    for (ev of evs){
+    if (evs.length > 0){
+        for (ev of evs){
+            var ev_panel_row_item = document.createElement("div");
+            ev_panel_row_item.classList.add('col-md-12');
+            var ev_panel = document.createElement("div");
+            ev_panel.classList.add('panel', 'panel-default', 'ev-panel');
+            var ev_panel_body = document.createElement("div");
+            ev_panel_body.classList.add('panel-body');
+            var par = document.createElement("p");
+            par.textContent = ev[0];
+            par.style.fontSize = "14px";
+            var link_out = document.createElement("a");
+            var addr = "https://www.ncbi.nlm.nih.gov/pubmed/" + String(ev[1])
+            link_out.setAttribute('href', addr);
+            link_out.target = '_blank';
+            var fa_icon = document.createElement("i");
+            fa_icon.classList.add("fas", "fa-external-link-alt");
+            fa_icon.style.paddingLeft = "5px";
+            link_out.appendChild(fa_icon);
+            par.appendChild(link_out);
+            ev_panel_body.appendChild(par);
+            ev_panel.appendChild(ev_panel_body);
+            ev_panel_row_item.appendChild(ev_panel);
+            ev_panel_row_item.appendChild(document.createElement('br'))
+            parent_panel_row.appendChild(ev_panel_row_item);
+        }
+    }
+    else {
+        var ev_panel_row_item = document.createElement("div");
+        ev_panel_row_item.classList.add('col-md-12');
         var ev_panel = document.createElement("div");
         ev_panel.classList.add('panel', 'panel-default', 'ev-panel');
         var ev_panel_body = document.createElement("div");
         ev_panel_body.classList.add('panel-body');
         var par = document.createElement("p");
-        par.textContent = ev[0];
+        par.textContent = "No evidence found";
         par.style.fontSize = "14px";
-        var link_out = document.createElement("a");
-        var addr = "https://www.ncbi.nlm.nih.gov/pubmed/" + String(ev[1])
-        link_out.setAttribute('href', addr);
-        link_out.target = '_blank';
-        var fa_icon = document.createElement("i");
-        fa_icon.classList.add("fas", "fa-external-link-alt");
-        fa_icon.style.paddingLeft = "5px";
-        link_out.appendChild(fa_icon);
-        par.appendChild(link_out);
         ev_panel_body.appendChild(par);
         ev_panel.appendChild(ev_panel_body);
-        parent_panel.appendChild(ev_panel);
+        ev_panel_row_item.appendChild(ev_panel);
+        ev_panel_row_item.appendChild(document.createElement('br'))
+        parent_panel_row.appendChild(ev_panel_row_item);
     }
 }
 
@@ -218,7 +247,7 @@ function updateStmtsBox(uuid_set){
             panel.classList.add('panel-default');
             var panel_body = document.createElement("div");
             panel_body.classList.add('panel-body');
-            var par = document.createElement("p");
+            var par = document.createElement("h3");
             par.textContent = sentences.sentences[u];
             var ev_button_div = document.createElement("div");
             var ev_button = document.createElement("button");
@@ -226,8 +255,11 @@ function updateStmtsBox(uuid_set){
             ev_button.textContent = "Get evidence";
             ev_button.dataset.id = u;
             var sel_stmt = getStatementsByUUID([u], stmts.statements)[0];
-            var json_view = renderjson(sel_stmt);
+            var json_view = renderjson.set_collapse_msg(function(){return ' more info '})(sel_stmt);
+            var json_title = document.createElement("h5");
+            json_title.textContent = "INDRA statement details";
             panel_body.appendChild(par);
+            panel_body.appendChild(json_title)
             panel_body.appendChild(json_view);
             ev_button_div.appendChild(ev_button);
             panel_body.appendChild(ev_button_div);

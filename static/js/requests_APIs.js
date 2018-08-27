@@ -1,8 +1,9 @@
 // retrieve a JSON from a url
 //***************************************
-function grabJSON (url) {
+function grabJSON (url, dtype='json') {
   return $.ajax({
     url: url,
+    dataType: dtype
   });
 }
 //***************************************
@@ -131,16 +132,37 @@ function assembleCX(res) {
   });
 }
 
-function shareNDEX(res) {
-  var res_json = res;
-  res_json['cyjs_model'] = JSON.stringify(cy.json())
+function shareNDEX(model_elements, preset_pos, stmts, sentences, evidence, cell_line, mrna, mutations, txt_input, parser) {
+  var res_json = {};
+  res_json['stmts'] = JSON.stringify(stmts);
+  res_json['model_elements'] = JSON.stringify(model_elements);
+  res_json['preset_pos'] = JSON.stringify(preset_pos);
+  res_json['sentences'] = JSON.stringify(sentences);
+  res_json['evidence'] = JSON.stringify(evidence);
+  res_json['cell_line'] = cell_line;
+  res_json['mrna'] = JSON.stringify(mrna);
+  res_json['mutations'] = JSON.stringify(mutations);
+  res_json['txt_input'] = txt_input;
+  res_json['parser'] = parser;
   return $.ajax({
-      url: indra_server_addr + "/share_model",
+      url: indra_server_addr + "/share_model_ndex",
       type: "POST",
       dataType: "json",
       data: JSON.stringify(res_json),
   });
 }
+
+
+function getNDEX(network_id) {
+  var res_json = {"network_id": network_id};
+  return $.ajax({
+      url: indra_server_addr + "/fetch_model_ndex",
+      type: "POST",
+      dataType: "json",
+      data: JSON.stringify(res_json),
+  });
+}
+
 
 function assemblePySB(res) {
   return requestPySB(res);
@@ -174,7 +196,6 @@ function assembleLoopy(res) {
   });
 }
 
-var mrna;
 function get_ccle_mrna(gene_list, cell_line) {
   var input_txt = {'gene_list': gene_list,
                    'cell_lines': [cell_line]};
@@ -183,14 +204,9 @@ function get_ccle_mrna(gene_list, cell_line) {
             type: "POST",
             dataType: "json",
             data: JSON.stringify(input_txt),
-           }).then(function(res){
-                      res = res["mrna_amounts"];
-                      res = res[cell_line];
-                      mrna = res;
-                  });
+           })
 }
 
-var cna;
 function get_ccle_cna(gene_list, cell_line) {
   var input_txt = {'gene_list': gene_list,
                    'cell_lines': [cell_line]};
@@ -199,14 +215,9 @@ function get_ccle_cna(gene_list, cell_line) {
             type: "POST",
             dataType: "json",
             data: JSON.stringify(input_txt),
-           }).then(function(res){
-                      res = res["cna"];
-                      res = res[cell_line];
-                      cna = res;
-                  });
+           })
 }
 
-var mutations;
 function get_ccle_mutations(gene_list, cell_line) {
   var input_txt = {'gene_list': gene_list,
                    'cell_lines': [cell_line]};
@@ -215,9 +226,5 @@ function get_ccle_mutations(gene_list, cell_line) {
             type: "POST",
             dataType: "json",
             data: JSON.stringify(input_txt),
-           }).then(function(res){
-                      res = res["mutations"];
-                      res = res[cell_line];
-                      mutations = res;
-                  });
+           })
 }

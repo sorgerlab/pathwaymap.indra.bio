@@ -2,6 +2,8 @@ var default_colors = ['#fdbb84','#fee8c8','#e34a33', '#3182bd', '#000000', '#bdb
 // [orange, light orange, RED, blue, black, gray]
 
 function drawCytoscape (div_id, model_elements) {
+    cyjs_elements = JSON.parse(JSON.stringify(model_elements))
+
     cy = cytoscape({
       container: document.getElementById(div_id),
 
@@ -18,16 +20,16 @@ function drawCytoscape (div_id, model_elements) {
             'border-color': default_colors[4],
             'background-color':default_colors[5],
             'background-opacity': 1,
-            'font-size': '40px',
-            'text-halign': 'above',
+            'font-size': '65px',
+            'text-halign': 'center',
             'text-valign': 'center',
             'z-index': 2,
             'color': '#FFFFFF',
             'text-outline-color': '#000000',
-            'text-outline-width': 5,
-            'font-weight': 700,
+            'text-outline-width': 8,
+            'font-weight': 500,
             'text-wrap': 'wrap',
-            'text-max-width': '200px'
+            'text-max-width': '300px'
           }
         },
 
@@ -331,6 +333,7 @@ function drawCytoscape (div_id, model_elements) {
       $('.modal').on('hidden.bs.modal', function (e) {
         $(".cy-panzoom").css({"display": "unset"});
       });
+      $(".cy-panzoom")[0].classList.add("hidden-xs")
     });
 
     var dragged = false;

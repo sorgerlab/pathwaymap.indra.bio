@@ -23,12 +23,12 @@
     "cytoscape": "^2.0.0 || ^3.0.0"
   },
   "homepage": "https://github.com/cytoscape/cytoscape.js-panzoom",
-  "version": "2.5.2",
-  "_release": "2.5.2",
+  "version": "2.5.3",
+  "_release": "2.5.3",
   "_resolution": {
     "type": "version",
-    "tag": "2.5.2",
-    "commit": "cb91f7b9cb0045af979f8f69755af9fcb9b1b4d4"
+    "tag": "v2.5.3",
+    "commit": "8babbcc3fe970e179d2f40b4ce51b13dcd4a2399"
   },
   "_source": "https://github.com/cytoscape/cytoscape.js-panzoom.git",
   "_target": "^2.4.1",
