@@ -16,13 +16,11 @@ class Requester {
         $.notify(this.message,
           { className: 'info', globalPosition: 'top center', autoHide: false})
         console.log(this.message)
-        hide_current_notifications();
       }
-      else if ((this.message == "Ready.") && (this.counter%2 == 0)){
-        // timeout here will hide modal. need even number of sent
-        // and completed ajax requests and a "Ready" message for 2s
+      else {
+        hide_current_notifications();
         this.timeout = window.setTimeout(() => {$.notify(this.message,
-          { className: 'success', globalPosition: 'top center' })}, 2000)
+          { className: 'success', globalPosition: 'top center' })}, 100)
         console.log(this.message)
       }
     }
@@ -307,11 +305,11 @@ function bind_this (target) {
   return proxy;
 }
 
-function hide_current_notifications(){
+function hide_current_notifications(timeout_ms=0){
   var current_notifs = $('.notifyjs-wrapper')
   window.setTimeout(function(){
     var next_notifs = $('.notifyjs-wrapper')
     var filtered_notifs = current_notifs.filter(next_notifs)
     filtered_notifs.trigger('notify-hide')
-  }, 5000)
+  }, timeout_ms)
 }
