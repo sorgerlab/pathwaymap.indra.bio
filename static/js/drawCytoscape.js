@@ -259,7 +259,7 @@ function drawCytoscape (div_id, model_elements) {
     }
 
     var layout = cy.makeLayout( params );
-    layout.run();
+    layout.run()
 
     var params = {
       name: 'cola',
@@ -278,7 +278,7 @@ function drawCytoscape (div_id, model_elements) {
       stop: undefined, // on layoutstop
     };
     var layout = cy.makeLayout( params );
-    layout.run();
+    toggle_layout(layout, layout_enabled);
 
     var params = {
       name: 'cola',
@@ -297,15 +297,15 @@ function drawCytoscape (div_id, model_elements) {
       stop: undefined, // on layoutstop
     };
     var layout = cy.makeLayout( params );
-    //layout.run();
+    //toggle_layout(layout, layout_enabled);
 
     cy.endBatch();
 
-    cy.one(('layoutstop'),function(){
-      cy.panzoom({
+    cy.one(('render'),function(){
+    cy.panzoom({
         zoomFactor: 0.05, // zoom factor per zoom tick
         zoomDelay: 45, // how many ms between zoom ticks
-        minZoom: 0.1, // min zoom level
+        minZoom: 0.05, // min zoom level
         maxZoom: 10, // max zoom level
         fitPadding: 30, // padding when fitting
         panSpeed: 10, // how many ms in between pan ticks
@@ -334,6 +334,7 @@ function drawCytoscape (div_id, model_elements) {
         $(".cy-panzoom").css({"display": "unset"});
       });
       $(".cy-panzoom")[0].classList.add("hidden-xs")
+      cy.fit(30);
     });
 
     var dragged = false;
@@ -345,7 +346,7 @@ function drawCytoscape (div_id, model_elements) {
     });
     cy.on(('mouseup'),function(){
       if (dragged === true){
-        layout.run();
+        toggle_layout(layout, layout_enabled);
         dragged = false;
       }
     });
@@ -357,16 +358,13 @@ function drawCytoscape (div_id, model_elements) {
     });
     cy.on(('touchend'),function(){
       if (dragged === true){
-        layout.run();
+        toggle_layout(layout, layout_enabled);
         dragged = false;
       }
     });
 
     cy.on(('layoutstop'),function(){
-      nds = (cy.json()).elements.nodes;
-      nds.forEach( function(n) {
-        preset_pos[n.data.name] = n.position;
-      });
+      preset_pos = updatePresetPos(cy, preset_pos)
     });
 
 
@@ -387,7 +385,6 @@ function drawCytoscape (div_id, model_elements) {
     });
     scapes[div_id] = cy;
 
-    modalEdges(cy);
 }
 
 function cytoscapeFromJSON(div_id, cyjson){
@@ -405,3 +402,19 @@ function getAvgPos(posxs, posys) {
         return ({'x': x, 'y' : y});
     }
   }
+
+function updatePresetPos(cy, preset_pos){
+  nds = (cy.json()).elements.nodes;
+  if (nds){
+    nds.forEach( function(n) {
+      preset_pos[n.data.name] = n.position;
+    });
+  }
+  return preset_pos
+}
+
+function toggle_layout(layout, layout_enabled){
+  if (layout_enabled){
+    layout.run()
+  }
+}

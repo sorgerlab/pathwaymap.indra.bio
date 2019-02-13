@@ -29,12 +29,11 @@
     "cytoscape-panzoom": "^2.4.1",
     "components-font-awesome": "^5.0.6",
     "seiyria-bootstrap-slider": "^9.7.3",
-    "papaparse": "^4.2.0",
-    "datatables.net": "^1.10.15",
-    "datatables.net-dt": "^3.2.2",
     "renderjson": "https://raw.githubusercontent.com/caldwell/renderjson/master/renderjson.js",
     "font-awesome": "^5.0.13",
-    "FileSaver.min": "https://raw.githubusercontent.com/Teleborder/FileSaver.js/master/FileSaver.min.js"
+    "FileSaver.min": "https://raw.githubusercontent.com/Teleborder/FileSaver.js/master/FileSaver.min.js",
+    "bootstrap-toggle": "^2.2.2",
+    "notifyjs": "^0.4.2"
   },
   "overrides": {
     "bootstrap": {

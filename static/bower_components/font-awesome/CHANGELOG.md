@@ -8,6 +8,145 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 repository that is by invitation only. You will get a 404 - Not Found if you do
 not have access**
 
+## [5.6.3](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.6.3) - 2018-12-20
+
+### Changed
+* Revising fire icon and adding alternative fire icon
+* Updating fedora brand icon
+
+---
+
+## [5.6.1](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.6.1) - 2018-12-12
+
+### Fixed
+* NPM JavaScript icon packages no longer include ES6 expressions in non-ES6 files
+  FortAwesome/Font-Awesome#14382, FortAwesome/Font-Awesome#14380, FortAwesome/Font-Awesome-Pro#1286
+* Removed extra point in the light style of exclamation-triangle
+* Correct a typo in the license files
+
+---
+
+## [5.6.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.6.0) - 2018-12-07
+
+**Minor version upgrade notice: there are some backward-incompatible changes to this release. See the
+[UPGRADING.md guide](https://github.com/FortAwesome/Font-Awesome/blob/master/UPGRADING.md) for more
+information.**
+
+### Added
+* Holiday category
+* Winter category
+* A nice selection of the top requested icons from the Font Awesome Leaderboard
+* Sponsored icon horse-head
+* Brand icons adobe, artstation, atlassian, centos, confluence, dhl, diaspora,
+  fedex, fedora, figma, intercom, invision, jira, mendeley, raspberry-pi,
+  redhat, sketch, sourcetree, suse, ubuntu, ups, usps, and yarn
+* The Canadian Maple Leaf (Aboot time, eh. You hosers.)
+
+### Changed
+* Added more icons to Buildings, Hands, Spinners, Users & People, and Vehicles categories
+* Added indicators whether an icon was added to Font Awesome through community voting
+
+### Fixed
+* Missing metadata for holly-berry
+
+---
+
+## [5.5.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.5.0)  - 2018-11-02
+
+### Added
+* Politics category
+* Weather category (volume 1 and 2)
+* Brand icon reacteurope
+* Sponsorship of briefcase by WorkRails
+
+### Fixed
+* Alignment centered for larger icons when using the CSS stacks feature
+
+---
+
+## [5.4.2](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.4.2)  - 2018-10-25
+
+### Added
+* Brand icon think-peaks
+
+### Changed
+* Updated rocketchat brand icon
+* Adding vr-cardboard and d-and-d-beyond to Free version
+* Replacing rendact with wpressr brand icon
+* Changing the version 4 shim for commenting icon to solid style to better match version 4
+
+### Fixed
+* Path issues with tombstone-alt icon in Regular and Light styles
+
+---
+
+## [5.4.1](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.4.1)  - 2018-10-10
+
+### Fixed
+* Separate wand and wand-magic into unique icons
+* Corrected the alignment of linkedin-in
+* Renamed categories "Holiday" to "Halloween" and "Seasonal" to "Autumn"
+
+---
+
+## [5.4.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.4.0)  - 2018-10-08
+
+### Added
+* New Tabletop Gaming, Holiday, Seasonal category
+* 7 tabletop gaming brands (acquisitions-incorporated, critical-role, d-and-d, d-and-d-beyond, fantasy-flight-games, penny-arcade, wizards-of-the-coast)
+* 25 new animals (and all of them are real you Disbelievers)
+* Sponsorship of volume-mute by Pulse-Eight
+* creative-commons-zero added to Free version
+* DEV brand icon
+* Search terms "positive" and "negative" added to applicable icons
+* Sponsorship of chess-knight by Inspira bvba
+* Sponsorship of blender-phone by Joe Emison
+* Icons chair, chair-office, file-csv, hammer, head-side, head-vr, house-damage, hryvnia, network-wired, running, slash, user-injured, and vr-cardboard
+
+### Changed
+* Using masks with SVG and JavaScript now use nanoid generated IDs instead of a simple counter
+* Updated speakap brand icon
+* Revised menorah icon and added hanukiah
+
+### Fixed
+* Slight distortion in book-heart
+* Bad search terms for folder icon
+* Set license for @fortawesome/free-brands-svg-icons NPM package
+
+---
+
+## [5.3.1](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.3.1)  - 2018-08-28
+
+### Changed
+* Updating icons in the Status category
+
+### Fixed
+* sponsors.yml listed icon prayer instead of pray
+* Removed Pro icons that accidentally made it into Free
+
+---
+
+## [5.3.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.3.0)  - 2018-08-27
+
+### Added
+* New Religion, and Marketing category
+* New icons in the Mathematics, and Business category
+* New stats for signal, volume, and wifi icons
+* New brand icon for the-red-yeti and alipay
+
+### Changed
+* Adding ethereum to Currency category
+* Adding bitcoin and btc to Payments & Shopping
+
+### Fixed
+* Incorrect name for layer-minus and layer-plus in sponsors.yml
+* Reversing route-highway and route-interstate
+* Correct version identifier in OTF and web font files
+* CSS keyframe names are not minified (and renamed) to prevent conflict with user or app specific names
+* Sass placeholder selector added for %fa-icon to fix CSS precendence issue with font-weight
+
+---
+
 ## [5.2.0](https://github.com/FortAwesome/Font-Awesome-Pro/releases/tag/5.2.0)  - 2018-07-23
 
 ### Added

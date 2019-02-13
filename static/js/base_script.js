@@ -1,4 +1,5 @@
 var cy = cytoscape();
+let rq = bind_this(new Requester());
 
 // {name : position} dict
 var prebuilt_model = 'McCormick';
@@ -8,6 +9,7 @@ var preset_pos_static = {};
 // {id : position} dict
 var id_pos = {};
 
+var layout_enabled = true;
 var scapes = {};
 var stmts;
 var sentences;
@@ -16,43 +18,23 @@ var cyjs_elements; //this is set by drawCytoscape with a copy of model_elements
 var model_elements;
 var mrna;
 var mutations;
-var cell_line;
+var cell_line = "LOXIMVI_SKIN";
 var txt_input;
 var network_id;
+var url = new URL(location.href)
+network_id = url.searchParams.get("uuid")
 
 var indra_server_addr = "http://indra-api-72031e2dfde08e09.elb.us-east-1.amazonaws.com:8000";
 //var indra_server_addr = "http://0.0.0.0:8080";
 
 var ctxt = {};
 
-var ras_model_promise = grabJSON('static/models/' + prebuilt_model + '/model.json');
-var ras_preset_pos_promise = grabJSON('static/models/' + prebuilt_model + '/preset_pos.json');
-var mrna_promise = grabJSON('static/models/' + prebuilt_model + '/mrna.json');
-var mutations_promise = grabJSON('static/models/' + prebuilt_model + '/mutations.json');
-var model_components_promise = Promise.all([ras_model_promise, ras_preset_pos_promise, mrna_promise, mutations_promise]);
-model_components_promise.then(function(promises){
-  preset_pos = promises[1];
-  model_elements = promises[0];
-  mrna = promises[2];
-  mutations = promises[3];
-  drawCytoscape ('cy_1', model_elements);
-  clearUploadInfo();
-  qtipNodes(scapes['cy_1']);
-  scapes['cy_1'].fit();
-  contextualizeNodesCCLEprebuilt(scapes['cy_1'], mrna, mutations)
-})
-var ras_stmts_promise = grabJSON('static/models/' + prebuilt_model + '/stmts.json');
-var ras_stmts_response;
-ras_stmts_promise.then(function(res){
-  ras_stmts_response = res;
-  stmts = ras_stmts_response;
-})
-var ras_sentences_promise = grabJSON('static/models/' + prebuilt_model + '/sentences.json');
-var ras_sentences_response;
-ras_sentences_promise.then(function(res){
-  ras_sentences_response = res;
-  sentences = res;
-})
+var ras_model_promise;
+var ras_preset_pos_promise;
+var mrna_promise;
+var mutations_promise;
+var model_components_promise;
+var ras_stmts_promise;
 
 var domain = [2.7, 3.7, 4.7, 5.7, 6.7, 7.7, 8.7, 9.7, 10.7];
 var exp_colorscale = d3.scaleThreshold()
@@ -78,15 +60,56 @@ var table;
 var path_id;
 
 $(function(){
-
+  $('body').tooltip({ selector: '[data-toggle="tooltip"]' });
+  $('[rel="tooltip"]').tooltip({trigger: "hover"});
   var win = $(window);
   var container_fluid_height = ($('body').height());
   var cy_height = String(container_fluid_height/1.2024);
   $('.cy')[0].setAttribute("style", "height:" + cy_height +  "px;");
   $('.cy-container')[0].setAttribute("style", "height:" + cy_height +  "px;");
+  
+  if (network_id){
+    drawCytoscape('cy_1', {"nodes":[{"data":{"id":0, "name": "A"}}], "edges":[{"data":{"i":"Virtual","id":1,"polarity":"positive","source":0,"target":0,"uuid_list":["404"]}}]} )
+    scapes["cy_1"].remove(scapes["cy_1"].nodes())
+    drawFromNDEX(network_id, "cy_1");
+  }
+  else {
+    var ras_model_promise = rq.grabJSON('static/models/' + prebuilt_model + '/model.json');
+    var ras_preset_pos_promise = rq.grabJSON('static/models/' + prebuilt_model + '/preset_pos.json');
+    var mrna_promise = rq.grabJSON('static/models/' + prebuilt_model + '/mrna.json');
+    var mutations_promise = rq.grabJSON('static/models/' + prebuilt_model + '/mutations.json');
+    var model_components_promise = Promise.all([ras_model_promise, ras_preset_pos_promise, mrna_promise, mutations_promise]);
+    var ras_stmts_promise = rq.grabJSON('static/models/' + prebuilt_model + '/stmts.json');
+    var ras_stmts_response;
+    ras_stmts_promise.then(function(res){
+      ras_stmts_response = res;
+      stmts = ras_stmts_response;
+    })
+    var ras_sentences_promise = rq.grabJSON('static/models/' + prebuilt_model + '/sentences.json');
+    var ras_sentences_response;
+    ras_sentences_promise.then(function(res){
+      ras_sentences_response = res;
+      sentences = res;
+    })
+    drawCytoscape('cy_1', {"nodes":[{"data":{"id":0, "name": "A"}}], "edges":[{"data":{"i":"Virtual","id":1,"polarity":"positive","source":0,"target":0,"uuid_list":["404"]}}]} )
+    scapes["cy_1"].remove(scapes["cy_1"].nodes())
+    model_components_promise.then(function(promises){
+      preset_pos = promises[1];
+      model_elements = promises[0];
+      mrna = promises[2];
+      mutations = promises[3];
+      drawCytoscape ('cy_1', model_elements);
+      modalEdges(scapes['cy_1'], rq);
+      clearUploadInfo();
+      qtipNodes(scapes['cy_1']);
+      scapes['cy_1'].fit();
+      var gene_names = get_cy_gene_names(scapes['cy_1']);
+      set_context(scapes['cy_1'], gene_names, mrna, mutations);
+    })
+  }
 
   // build the dropdown pickers
-  grabJSON('static/cell_dict.json').then(
+  rq.grabJSON('static/cell_dict.json').then(
     function(ajax_response){
       var interesting_lines = {"LOXIMVI_SKIN":"model_LOXIMVI_SKIN.json", "A101D_SKIN":"model_A101D_SKIN.json"};
       for (var d of ['#cellSelectStatic', '#cellSelectDynamic']) {
@@ -102,17 +125,20 @@ $(function(){
 
   $("#loadButtonDynamic").click(function(){
     var txt = $('#textArea')[0].value;
-    var stmts_promise = txtProcess(txt, parser).then(groundingMapper);
-    var cyjs_promise = stmts_promise.then(assembleCyJS);
-    var english_promise = stmts_promise.then(assembleEnglish)
+    var stmts_promise = rq.txtProcess(txt, parser).then(rq.groundingMapper)
+    var cyjs_promise = stmts_promise.then(rq.assembleCyJS);
+    var english_promise = stmts_promise.then(rq.assembleEnglish)
     var english_promise;
     stmts_promise.then(function (model_response) {
       stmts = model_response;
     });
     cyjs_promise.then(function (model_response) {
       model_elements = model_response;
+      activate_layout();
       drawCytoscape('cy_1', model_response);
+      modalEdges(scapes['cy_1'], rq);
       clearUploadInfo();
+      reset_url();
       qtipNodes(scapes['cy_1']);
       $('#menu').modal('hide');
       document.getElementById("loadContextButton").click();
@@ -123,49 +149,43 @@ $(function(){
   });
 
   $("#loadContextButton").click(function(){
-    cell_line = $('#cellSelectDynamic').val().slice(6,-5);
-    contextualizeNodesCCLE(cy, cell_line);
     $('#menu').modal('hide');
+    var new_cell_line = $('#cellSelectDynamic').val().slice(6,-5);
+    contextualizeNodesCCLE(scapes['cy_1'], new_cell_line, rq)
   });
 
   $("#downloadPySB").click(function(){
-    var txt = $('#textArea')[0].value;
-    txtProcess(txt, parser).then(groundingMapper).then(assemblePySB).then(function (res) {
+    rq.assemblePySB(stmts).then(function (res) {
       download('model.py', res['model']);
     });
   });
 
   $("#downloadSBML").click(function(){
-    var txt = $('#textArea')[0].value;
-    txtProcess(txt, parser).then(groundingMapper).then(assembleSBML).then(function (res) {
+    rq.assembleSBML(stmts).then(function (res) {
       download('model.sbml', res['model']);
     });
   });
 
   $("#downloadSBGN").click(function(){
-    var txt = $('#textArea')[0].value;
-    txtProcess(txt, parser).then(groundingMapper).then(assembleSBGN).then(function (res) {
+    rq.assembleSBGN(stmts).then(function (res) {
       download('model.sbgn', res['model']);
     });
   });
 
   $("#downloadKappa").click(function(){
-    var txt = $('#textArea')[0].value;
-    txtProcess(txt, parser).then(groundingMapper).then(assembleKappa).then(function (res) {
+    rq.assembleKappa(stmts).then(function (res) {
       download('model.ka', res['model']);
     });
   });
 
   $("#downloadBNGL").click(function(){
-    var txt = $('#textArea')[0].value;
-    txtProcess(txt, parser).then(groundingMapper).then(assembleBNGL).then(function (res) {
+    rq.assembleBNGL(stmts).then(function (res) {
       download('model.bngl', res['model']);
     });
   });
 
   $("#downloadCX").click(function(){
-    var txt = $('#textArea')[0].value;
-    txtProcess(txt, parser).then(groundingMapper).then(assembleCX).then(function (res) {
+    rq.assembleCX(stmts).then(function (res) {
       download('model.cx', res['model']);
     });
   });
@@ -177,7 +197,10 @@ $(function(){
     par.textContent = 'Uploading model to NDEX...'
     modal_body.append(par)
     txt_input = $('#textArea')[0].value;
-    shareNDEX(cyjs_elements, preset_pos, stmts, sentences, evidence, cell_line, mrna, mutations, txt_input, parser).then(function (res) {
+    preset_pos = updatePresetPos(scapes['cy_1'], preset_pos)
+    rq.shareNDEX(cyjs_elements, preset_pos, stmts,
+                 sentences, evidence, cell_line, mrna,
+                 mutations, txt_input, parser).then(function (res) {
       par.textContent = 'Network uploaded to NDEX.'
       var par2 = document.createElement("p");
       network_id = res['network_id']
@@ -188,13 +211,15 @@ $(function(){
       temp_link.target = '_blank';
       par2.append(temp_link);
       modal_body.append(par2);
+      // edit url to contain ndex uuid
+      var url = new URL(location.href)
+      url.searchParams.set('uuid', network_id)
+      history.pushState(null, '', url);
     });
   });
 
-
-  $("#loadNDEX").click(function(){
-    var network_id = $("#ndexUUID")[0].value
-    getNDEX(network_id).then(function (res) {
+  function drawFromNDEX(network_id, scape_id){
+    rq.getNDEX(network_id).then(function (res) {
       model_elements = JSON.parse(res.model_elements)
       preset_pos = JSON.parse(res.preset_pos)
       stmts = JSON.parse(res.stmts)
@@ -216,21 +241,29 @@ $(function(){
       else {
         $("#parseReach").addClass("active");
       }
-      drawCytoscape ('cy_1', model_elements);
+      layout_enabled = false;
+      disable_layout()
+      drawCytoscape (scape_id, model_elements);
+      modalEdges(scapes['cy_1'], rq);
       clearUploadInfo();
-      qtipNodes(scapes['cy_1']);
-      scapes['cy_1'].fit();
-      contextualizeNodesCCLEprebuilt(scapes['cy_1'], mrna, mutations)
+      qtipNodes(scapes[scape_id]);
+      scapes[scape_id].fit();
+      var gene_names = get_cy_gene_names(scapes[scape_id]);
+      set_context(scapes[scape_id], gene_names, mrna, mutations);
       $('#ndexModal').modal('hide');
+      layout_enabled = true;
+      activate_layout()
     });
+  }
+
+  $("#loadNDEX").click(function(){
+    var network_id = $("#ndexUUID")[0].value
+    drawFromNDEX(network_id, "cy_1");
   });
 
 
   $("#downloadINDRA").click(function(){
-    var txt = $('#textArea')[0].value;
-    txtProcess(txt, parser).then(groundingMapper).then(function (res) {
-      download('stmts.json', JSON.stringify(res['statements'], null, 2));
-    });
+    download('stmts.json', JSON.stringify(stmts, null, 2));
   });
 
 
@@ -249,7 +282,7 @@ $(function(){
   $("#loopy").click(function(){
     var txt = $('#textArea')[0].value;
 
-    txtProcess(txt, parser).then(groundingMapper).then(assembleLoopy).then(function (res) {
+    rq.txtProcess(txt, parser).then(rq.groundingMapper).then(assembleLoopy).then(function (res) {
 
         window.open(
           res['loopy_url'].toString(),
@@ -258,24 +291,41 @@ $(function(){
     });
   });
 
+$("#layoutToggle").change(function() {
+  layout_enabled = $("#layoutToggle").prop('checked')
+});
+
 
 $("#loadButtonStatic").click(function(){
-  model_promise = grabJSON('static/models/' + prebuilt_model + '/model.json');
-  preset_pos_promise = grabJSON('static/models/' + prebuilt_model + '/preset_pos.json');
-  txt_input_promise = grabJSON('static/models/' + prebuilt_model + '/txt_input.json', dtype='text');
+  model_promise = rq.grabJSON('static/models/' + prebuilt_model + '/model.json');
+  preset_pos_promise = rq.grabJSON('static/models/' + prebuilt_model + '/preset_pos.json');
+  txt_input_promise = rq.grabJSON('static/models/' + prebuilt_model + '/txt_input.json', dtype='text');
   var model_components_promise = Promise.all([model_promise, preset_pos_promise, txt_input_promise]);
+  stmts_promise = rq.grabJSON('static/models/' + prebuilt_model + '/stmts.json');
+  sentences_promise = rq.grabJSON('static/models/' + prebuilt_model + '/sentences.json');
+  stmts_promise.then(function(res){
+    stmts_response = res;
+    stmts = stmts_response;
+  })
+  sentences_promise = rq.grabJSON('static/models/' + prebuilt_model + '/sentences.json');
+  sentences_promise.then(function(res){
+    sentences_response = res;
+    sentences = res;
+  })
   model_components_promise.then(function(promises){
     preset_pos = promises[1];
     model_elements = promises[0];
     txt_input = promises[2];
+    activate_layout();
     drawCytoscape ('cy_1', model_elements);
+    modalEdges(scapes['cy_1'], rq);
     clearUploadInfo();
     qtipNodes(scapes['cy_1']);
     $('#textArea').val(txt_input);
     scapes['cy_1'].fit();
     document.getElementById("loadContextButton").click();
   })
-
+  reset_url();
 });
 
 $(".cyjs2loopy").click(function(){
@@ -284,17 +334,6 @@ $(".cyjs2loopy").click(function(){
     'http://ncase.me/loopy/v1/?data=' + model,
     "_blank"
   );
-});
-
-$(".presetLayout").click(function(){
-  if (this.classList.contains("active")){
-    $(".presetLayout").removeClass("active");
-    preset_pos = {};
-  }
-  else {
-    $(".presetLayout").addClass("active");
-    preset_pos = preset_pos_static;
-  }
 });
 
 $('a[href="#byom"]').click(function(){
@@ -354,9 +393,10 @@ $("#reset_filter").click(function(){
   current_ctx_selection = new Array(ctx_select_divs.length).fill("");
   clearCtxtSelects();
   build_ctx_dropdowns(sub_select_array, ctx_select_divs, current_ctx_selection);
-  grabJSON('static/models/' + prebuilt_model + '/model.json').then(function (model_response) {
+  rq.grabJSON('static/models/' + prebuilt_model + '/model.json').then(function (model_response) {
     model_elements = model_response;
     drawCytoscape ('cy_1', model_response);
+    modalEdges(scapes['cy_1'], rq);
     clearUploadInfo();
     qtipNodes(scapes['cy_1']);
   });
@@ -403,7 +443,45 @@ $('.cy').each(function(){
 
 });// dom ready
 
+function contextualizeNodesCCLE(cy, new_cell_line, requester){
+  // check if we cell line selection changed before req to API
+  requester.update_state("Setting context to " + new_cell_line + ".");
+  gene_names = get_cy_gene_names(cy);
+  mrna_promise = rq.get_ccle_mrna(gene_names, new_cell_line)
+  mutations_promise = rq.get_ccle_mutations(gene_names, new_cell_line)
+  Promise.all([mrna_promise, mutations_promise]).then(function(pp){
+    mrna = pp[0]
+    mutations = pp[1]
+    check_response = (mrna.mrna_amounts[new_cell_line] != null)
+    if (check_response){
+      cell_line = new_cell_line
+      set_context(cy, gene_names, mrna, mutations);
+      window.setTimeout(requester.update_state, 2000, "Ready.")
+    }
+    else {
+      requester.update_state("Cell line data not found, restoring previous settings.")
+      window.setTimeout(requester.update_state, 2000, "Ready.")
+      $('#cellSelectDynamic').val("model_" + cell_line + ".json")
+      $('#cellSelectDynamic').selectpicker('render')
+    }
+  })
+}
+
+function activate_layout(){
+  $("#layoutToggle").bootstrapToggle('on')
+}
+
+function disable_layout(){
+  $("#layoutToggle").bootstrapToggle('off')
+}
+
 function clearUploadInfo(){
   var modal_body = $('.ndex-upload-container')[0]
   modal_body.innerHTML = null
+}
+
+function reset_url(){
+  var url = new URL(location.href)
+  history.pushState(null, '', url.origin);
+  network_id = null;
 }

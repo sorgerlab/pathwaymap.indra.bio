@@ -1,12 +1,244 @@
-// retrieve a JSON from a url
-//***************************************
-function grabJSON (url, dtype='json') {
-  return $.ajax({
-    url: url,
-    dataType: dtype
-  });
+class Requester {
+  constructor(){
+    this.counter = 0;
+    this.message = "Ready.";
+    this.timeout = window.setTimeout(0);
+  }
+
+  update_state(message){
+    this.counter += 1;
+    if (this.message != message){
+      // do we have a different message? change it!
+      // will toggle modal to show here
+      this.message = message;
+      clearTimeout(this.timeout)
+      if (this.message != "Ready.") {
+        $.notify(this.message,
+          { className: 'info', globalPosition: 'top center' })
+        console.log(this.message)
+      }
+      else if ((this.message == "Ready.") && (this.counter%2 == 0)){
+        // timeout here will hide modal. need even number of sent
+        // and completed ajax requests and a "Ready" message for 2s
+        this.timeout = window.setTimeout(() => {$.notify(this.message,
+          { className: 'success', globalPosition: 'top center' })}, 2000)
+        console.log(this.message)
+      }
+    }
+  }
+
+  grabJSON (url, dtype='json') {
+    var ajax_params = {
+      "url": url,
+      "dataType": dtype,
+    }
+    ajax_params["beforeSend"] = () => (this.update_state("Getting JSON."))
+    ajax_params["complete"] = () => (this.update_state("Ready."))
+    return $.ajax(ajax_params);
+  }
+
+  make_request (ajax_params, message) {
+    var ajax_params = ajax_params;
+    ajax_params["beforeSend"] = () => (this.update_state(message))
+    ajax_params["complete"] = () => (this.update_state("Ready."))
+    return $.ajax(ajax_params);
+  }
+
+  txtProcess(txt, parser, reach_offline=true) {
+    var input_txt = {'text':txt};
+    input_txt["offline"] = reach_offline;
+    var ajax_params = {
+      "url": indra_server_addr + "/"+ parser + "/process_text",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(input_txt)
+    };
+    var message = ("Processing text.");
+    stmts = this.make_request(ajax_params, message)
+    return stmts
+  }
+
+  groundingMapper(res) {
+    var ajax_params = {
+      "url": indra_server_addr + "/preassembly/map_grounding",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(res),
+    };
+    var message = ("Grounding INDRA statements.");
+    stmts = this.make_request(ajax_params, message)
+    return stmts
+  }
+
+  getEvidence(res) {
+    var ajax_params = {
+      "url": indra_server_addr + "/indra_db_rest/get_evidence",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(res),
+      }
+    var message = ("Querying INDRA DB for statement evidence.");
+    var stmts_db = this.make_request(ajax_params, message)
+    return stmts_db
+  }
+
+  assembleCyJS(res) {
+    var res_json = res;
+    var ajax_params = {
+      "url": indra_server_addr + "/assemblers/cyjs",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(res_json),
+    }
+    var message = ("Assembling CytoscapeJS model.");
+    var cyjs_model = this.make_request(ajax_params, message)
+    return cyjs_model
+  }
+
+  assembleEnglish(res) {
+    var res_json = res;
+    var ajax_params = {
+      "url": indra_server_addr + "/assemblers/english",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(res_json),
+    }
+    var message = ("Assembling English language sentences for each statement.");
+    var sentences = this.make_request(ajax_params, message)
+    return sentences
+  }
+
+  assembleCX(res) {
+    var res_json = res;
+    var ajax_params = {
+      "url": indra_server_addr + "/assemblers/cx",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(res_json),
+    }
+    var message = ("Assembling Cytoscape CX model.");
+    var cx_model = this.make_request(ajax_params, message)
+    return cx_model
+  }
+
+  shareNDEX(model_elements, preset_pos, stmts, sentences, evidence, cell_line,
+            mrna, mutations, txt_input, parser) {
+    var res_json = {};
+    res_json['stmts'] = JSON.stringify(stmts);
+    res_json['model_elements'] = JSON.stringify(model_elements);
+    res_json['preset_pos'] = JSON.stringify(preset_pos);
+    res_json['sentences'] = JSON.stringify(sentences);
+    res_json['evidence'] = JSON.stringify(evidence);
+    res_json['cell_line'] = cell_line;
+    res_json['mrna'] = JSON.stringify(mrna);
+    res_json['mutations'] = JSON.stringify(mutations);
+    res_json['txt_input'] = txt_input;
+    res_json['parser'] = parser;
+    var ajax_params = {
+      "url": indra_server_addr + "/share_model_ndex",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(res_json),
+    }
+    var message = ("Uploading model to NDEX.");
+    var ndex_push = this.make_request(ajax_params, message)
+    return ndex_push;
+  }
+
+  getNDEX(network_id) {
+    var res_json = {"network_id": network_id};
+    var ajax_params = {
+      "url": indra_server_addr + "/fetch_model_ndex",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(res_json),
+    }
+    var message = ("Downloading model from NDEX.");
+    var ndex_pull = this.make_request(ajax_params, message)
+    return ndex_pull;
+  }
+
+  requestPySB(stmts, export_format, message) {
+    var res_json = {};
+    res_json['statements'] = stmts['statements']
+    res_json['export_format'] = export_format;
+    var ajax_params = {
+      "url": indra_server_addr + "/assemblers/pysb",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(res_json),
+    }
+    var pysb_model = this.make_request(ajax_params, message)
+    return pysb_model
+  }
+
+  assemblePySB(res) {
+    var message = "Assembling PySB model."
+    return this.requestPySB(res, null, message);
+  }
+
+  assembleSBML(res) {
+    var message = "Assembling SBML model."
+    return this.requestPySB(res, 'sbml', message);
+  }
+
+  assembleSBGN(res) {
+    var message = "Assembling SBGN model."
+    return this.requestPySB(res, 'sbgn', message);
+  }
+
+  assembleBNGL(res) {
+    var message = "Assembling BNGL model."
+    return this.requestPySB(res, 'bngl', message);
+  }
+
+  assembleKappa(res) {
+    var message = "Assembling Kappa model."
+    return this.requestPySB(res, 'kappa', message);
+  }
+
+  get_ccle_mrna(gene_list, cell_line) {
+    var input_txt = {'gene_list': gene_list,
+                     'cell_lines': [cell_line]};
+    var ajax_params = {
+      "url": indra_server_addr + "/databases/cbio/get_ccle_mrna",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(input_txt),
+     }
+     var message = ("Retreiving CCLE mRNA expression.");
+     var mrna = this.make_request(ajax_params, message);
+     return mrna
+  }
+
+  get_ccle_cna(gene_list, cell_line) {
+    var input_txt = {'gene_list': gene_list,
+                     'cell_lines': [cell_line]};
+    var ajax_params = {
+      "url": indra_server_addr + "/databases/cbio/get_ccle_cna",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(input_txt),
+    }
+    var message = ("Getting CCLE CNA.");
+    var cna = this.make_request(ajax_params, message);
+    return cna
+  }
+
+  get_ccle_mutations(gene_list, cell_line) {
+    var input_txt = {'gene_list': gene_list,
+                     'cell_lines': [cell_line]};
+    var ajax_params = {
+      "url": indra_server_addr + "/databases/cbio/get_ccle_mutations",
+      "type": "POST",
+      "dataType": "json",
+      "data": JSON.stringify(input_txt),
+     }
+    var message = ("Getting CCLE mutation status.");
+    var mutations = this.make_request(ajax_params, message);
+    return mutations
+  }
 }
-//***************************************
 
 //build bootstrap-select dropdown using json
 //***************************************
@@ -27,7 +259,6 @@ function dropdownCtxtSelectFromJSON (div_id, ajax_response) {
 }
 //***************************************
 
-
 //download a model
 //***************************************
 function download(exportName, exportObj){
@@ -45,146 +276,6 @@ function download(exportName, exportObj){
   }
   saveAs(blob, exportName);
 }
-//***************************************
-
-//send text to a reading system, get back stmts
-//***************************************
-function txtProcess(txt, parser) {
-  var input_txt = {'text':txt};
-  stmts = $.ajax({
-    url: indra_server_addr + "/"+ parser + "/process_text",
-    type: "POST",
-    dataType: "json",
-    data: JSON.stringify(input_txt),
-    });
-  return stmts
-}
-
-// send stmts to grounding mapper, get grounded stmts
-//***************************************
-function groundingMapper(res) {
-  stmts = $.ajax({
-    url: indra_server_addr + "/preassembly/map_grounding",
-    type: "POST",
-    dataType: "json",
-    data: JSON.stringify(res),
-    });
-  return stmts
-}
-//***************************************
-
-// query db for support to single statement
-//***************************************
-function getEvidence(res) {
-  stmts_db = $.ajax({
-    url: indra_server_addr + "/indra_db_rest/get_evidence",
-    type: "POST",
-    dataType: "json",
-    data: JSON.stringify(res),
-    });
-  return stmts_db
-}
-//***************************************
-
-
-function assembleCyJS(res) {
-  var res_json = res;
-  return $.ajax({
-      url: indra_server_addr + "/assemblers/cyjs",
-      type: "POST",
-      dataType: "json",
-      data: JSON.stringify(res_json),
-  });
-}
-
-function assembleEnglish(res) {
-  var res_json = res;
-  return $.ajax({
-      url: indra_server_addr + "/assemblers/english",
-      type: "POST",
-      dataType: "json",
-      data: JSON.stringify(res_json),
-  });
-}
-
-function requestPySB(res, export_format=null) {
-  var res_json = res;
-  res_json['line'] = $('#cellSelectDynamic').val().slice(6,-5);
-  if (export_format){
-    res_json['export_format'] = export_format;
-    }
-  return $.ajax({
-      url: indra_server_addr + "/assemblers/pysb",
-      type: "POST",
-      dataType: "json",
-      data: JSON.stringify(res_json),
-  });
-}
-
-function assembleCX(res) {
-  var res_json = res;
-  res_json['cyjs_model'] = JSON.stringify(cy.json())
-  return $.ajax({
-      url: indra_server_addr + "/assemblers/cx",
-      type: "POST",
-      dataType: "json",
-      data: JSON.stringify(res_json),
-  });
-}
-
-function shareNDEX(model_elements, preset_pos, stmts, sentences, evidence, cell_line, mrna, mutations, txt_input, parser) {
-  var res_json = {};
-  res_json['stmts'] = JSON.stringify(stmts);
-  res_json['model_elements'] = JSON.stringify(model_elements);
-  res_json['preset_pos'] = JSON.stringify(preset_pos);
-  res_json['sentences'] = JSON.stringify(sentences);
-  res_json['evidence'] = JSON.stringify(evidence);
-  res_json['cell_line'] = cell_line;
-  res_json['mrna'] = JSON.stringify(mrna);
-  res_json['mutations'] = JSON.stringify(mutations);
-  res_json['txt_input'] = txt_input;
-  res_json['parser'] = parser;
-  return $.ajax({
-      url: indra_server_addr + "/share_model_ndex",
-      type: "POST",
-      dataType: "json",
-      data: JSON.stringify(res_json),
-  });
-}
-
-
-function getNDEX(network_id) {
-  var res_json = {"network_id": network_id};
-  return $.ajax({
-      url: indra_server_addr + "/fetch_model_ndex",
-      type: "POST",
-      dataType: "json",
-      data: JSON.stringify(res_json),
-  });
-}
-
-
-function assemblePySB(res) {
-  return requestPySB(res);
-  }
-
-function assembleSBML(res) {
-    return requestPySB(res, 'sbml');
-    }
-
-function assembleSBGN(res) {
-    return requestPySB(res, 'sbgn');
-    }
-
-function assembleBNGL(res) {
-    return requestPySB(res, 'bngl');
-    }
-
-function assembleKappa(res) {
-    return requestPySB(res, 'kappa');
-    }
-
-
 
 function assembleLoopy(res) {
   var res_json = res;
@@ -196,35 +287,21 @@ function assembleLoopy(res) {
   });
 }
 
-function get_ccle_mrna(gene_list, cell_line) {
-  var input_txt = {'gene_list': gene_list,
-                   'cell_lines': [cell_line]};
-  return $.ajax({
-            url: indra_server_addr + "/databases/cbio/get_ccle_mrna",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(input_txt),
-           })
-}
-
-function get_ccle_cna(gene_list, cell_line) {
-  var input_txt = {'gene_list': gene_list,
-                   'cell_lines': [cell_line]};
-  return $.ajax({
-            url: indra_server_addr + "/databases/cbio/get_ccle_cna",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(input_txt),
-           })
-}
-
-function get_ccle_mutations(gene_list, cell_line) {
-  var input_txt = {'gene_list': gene_list,
-                   'cell_lines': [cell_line]};
-  return $.ajax({
-            url: indra_server_addr + "/databases/cbio/get_ccle_mutations",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(input_txt),
-           })
+function bind_this (target) {
+// taken from https://ponyfoo.com/articles/binding-methods-to-class-instance-objects
+  const cache = new WeakMap();
+  const handler = {
+    get (target, key) {
+      const value = Reflect.get(target, key);
+      if (typeof value !== 'function') {
+        return value;
+      }
+      if (!cache.has(value)) {
+        cache.set(value, value.bind(target));
+      }
+      return cache.get(value);
+    }
+  };
+  const proxy = new Proxy(target, handler);
+  return proxy;
 }

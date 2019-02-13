@@ -4,7 +4,7 @@
     <title>INDRA Interactive Map</title>
     <!-- CSS -->
     <link href="static/style.css" rel="stylesheet" type="text/css" />
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- bower:css -->
     <link rel="stylesheet" href="static/bower_components/qtip2/jquery.qtip.min.css" />
     <link rel="stylesheet" href="static/bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="static/bower_components/cytoscape-panzoom/cytoscape.js-panzoom.css" />
     <link rel="stylesheet" href="static/bower_components/components-font-awesome/css/fontawesome-all.css" />
     <link rel="stylesheet" href="static/bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
-    <link rel="stylesheet" href="static/bower_components/datatables.net-dt/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="static/bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css" />
     <!-- endbower -->
     <!-- bower:js -->
     <script src="static/bower_components/jquery/dist/jquery.js"></script>
@@ -31,10 +31,10 @@
     <script src="static/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
     <script src="static/bower_components/cytoscape-panzoom/cytoscape-panzoom.js"></script>
     <script src="static/bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.js"></script>
-    <script src="static/bower_components/papaparse/papaparse.js"></script>
-    <script src="static/bower_components/datatables.net/js/jquery.dataTables.js"></script>
     <script src="static/bower_components/renderjson/index.js"></script>
     <script src="static/bower_components/FileSaver.min/index.js"></script>
+    <script src="static/bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+    <script src="static/bower_components/notifyjs/dist/notify.js"></script>
     <!-- endbower -->
     <!-- d3 -->
     <script src="https://d3js.org/d3-array.v1.min.js"></script>
@@ -59,19 +59,6 @@
     <script src="static/js/base_script.js"></script>
     <!-- js -->
 
-
-
-    <!-- google analytics -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-96082280-1', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <!-- end google analytics -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,7 +70,7 @@
 
     <div class=row>
         <div class="col-sm-6 col-xs-6 padding-0">
-            <img src="indra_logo_v2.png" alt="INDRA logo" style="height:30px;"></img> <span class="hidden-xs" style="font:30px bold;text-align: center; vertical-align: middle;">INDRA-IPM</span>
+            <img src="indra_logo_v2.png" alt="INDRA logo" style="height:30px;"></img> <span class="hidden-xs" style="font:30px bold;text-align: center; vertical-align: middle;font-family: Roboto, sans-serif; ">INDRA-IPM</span>
         </div>
         <!-- <div class="col-sm-4 col-xs-4 hidden-xs pull-left padding-0" style="font:30px bold;">INDRA-IPM</div> -->
       <div class='col-sm-6 col-xs-6 pull-right'>
@@ -134,7 +121,7 @@
       <form>
           <div class="form-group">
             <label for="textArea">Describe your mechanism.</label>
-            <textarea class="form-control" id="textArea" rows="15">
+            <textarea class="form-control" id="textArea" rows="15" autocomplete="off">
 Growth-factor proteins activate EGFR, ERBB2, FGFR, PDGFR, MET, ROS1, and ALK.
 EGFR, ERBB2, PDGFR, MET, ROS1, ALK and FGFR activate GRB2 and SHC.
 GRB2 and SHC activate RASGRF and SOS.
@@ -244,53 +231,146 @@ TIAM activates RAC, which activates PAK.
                   </div> -->
 
                   <div id="about" class="tab-pane fade in">
-                      <div >
-                          <h4>How do I read this map?</h4>
-                          <ul>
-                              <li>Nodes represent genes.</li>
-                              <li>Nodes that are subdivided into pie charts represent families.</li>
-                              <li>Wild-type genes are colored <font color="green">green.</font></li>
-                              <li>Mutated genes are colored <font color="orange">orange.</font></li>
-                              <li>The intensity of each color corresponds to the expression level of a gene in CCLE.</li>
-                              <li>Clicking any node provides additional context by linking out to CiteAb, HGNC, and UniProt.</li>
-                              <li>Clicking any edge will allow a user to filter the sources and targets of that edge and make a request for evidence found in literature and curated database that is stored in INDRA DB.</li>
-                              <li><a href="https://www.cancer.gov/research/key-initiatives/ras/ras-central/blog/2014/what-do-we-mean-ras-pathway">The RAS Pathway Map</a> model was drawn by Dr. Frank McCormick at the NCI RAS Initiative.</li>
-                          </ul>
-                          <br>
-                          <h4>Build your own model from text</h4>
-                          <ul>
-                              <li>Open the Build tab.</li>
-                              <li>Enter a list of sentences describing biological mechanisms.</li>
-                              <li>Click load and exit the menu.</li>
-                              <li>Your model should be ready momentarily.</li>
-                              <li>The text example in Build is a description of Frank McCormick's Ras Pathway diagram.</li>
-                          </ul>
-                          <br>
-                          <h4>Model context</h4>
-                          <ul>
-                              <li>Network models can be contextualized using the Context tab.</li>
-                              <li>Users can load gene expression and mutation data from each of the 900+ cell lines available in the <a href="https://portals.broadinstitute.org/ccle">CCLE</a>.</li>
-                              <li>We access a publicly available version of the CCLE hosted on <a href="http://www.cbioportal.org/">cBio Portal</a>.</li>
-                          </ul>
-                          <br>
-                          <h4>How does this work?</h4>
-                          <ul>
-                              <li>All models are generated using <a href="https://github.com/sorgerlab/indra">INDRA</a> developed by the <a href="http://hits.harvard.edu/the-program/laboratory-of-systems-pharmacology/about/">Laboratory of Systems Pharmacology</a> at Harvard Medical School.</li>
-                              <li>The underlying API is available at <a href="api.indra.bio:8000">api.indra.bio:8000</a> and documented at: <a href="http://pathwaymap.indra.bio/api">http://pathwaymap.indra.bio/api</a></li>
-                              <li>Natural language processing is done using the <a href="https://github.com/clulab/reach">REACH</a> natural language processor developed by the CLU Lab at the University of Arizona or the <a href="https://www.ihmc.us/trips/">TRIPS</a> processor developed by IHMC.</li>
-                              <li>Interactive network visualizations are implemented in <a href="http://js.cytoscape.org">cytoscape.js</a></li>
-                              <li><a href="http://www.colorbrewer2.org">Colorbrewer2</a> was used to select colorscales for models rendered with D3.js</li>
-                          </ul>
-                          <br>
-                          <h4>Funding</h4>
-                            <ul>
-                            <li>This work was funded by ARO Grants W911NF‐14‐1‐0397 and W911NF‐15‐1‐0544 under the DARPA Big Mechanism and Communicating with Computers programs, and by NIGMS Grant P50GM107618 to Peter K. Sorger.</li>
-                            </ul>
-                            <h4>Privacy</h4>
-                            <ul>
-                            <li>Our API backend receives requests such as those for reading, contextualization, and NDEX sharing. Our server logs the IP addresses which make reqeusts to the API. The data from some user requests is forwarded to external APIs such as TRIPS (reading) and cBioPortal (contextualization) in order to generate responses. Some of the plugins we use such as d3.js require cookies.</li>
-                            </ul>
-                      </div>
+                    <br>
+                    <div class="panel-group">
+                        <!-- panel 1 start -->
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" href="#collapse1">Introduction</a>
+                            </h4>
+                          </div>
+                          <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                    <p><span>This website implements an interactive pathway map (IPM) built using INDRA, an automated model assembly system for molecular biology. The goal of the INDRA-IPM is to allow users to build, contextualize, and share biological pathway models by describing them in natural language.</span></p>
+                                    <p><span>The visualization aims to display pathways in a visual style similar to that used by biologists in textbooks and presentations. In addition we offer a layer of contextualization and an interactive user interface:</span></p>
+                                    <ul>
+                                    <li><span>Nodes represent biological entities mentioned in text.</span></li>
+                                    <li><span>Nodes representing families are subdivided into pie charts.</span></li>
+                                    <li><span>Wild-type genes are colored green.</span></li>
+                                    <li><span>Mutated genes are colored orange.</span></li>
+                                    <li><span>The intensity of each color corresponds to the expression level of a gene in CCLE.</span></li>
+                                    <li><span>Clicking any node provides additional context by linking out to CiteAb, HGNC, and UniProt.</span></li>
+                                    <li><span>Clicking any edge will allow a user to filter the sources and targets of that edge and make a request for evidence found in literature and curated database that is stored in INDRA DB.</span></li>
+                                    <li><span>The force-directed active layout which snaps nodes to their positions can be disabled by toggling the &ldquo;Forces&rdquo; button.</span></li>
+                                    </ul>
+                                    <p><span>We start off displaying a pre-built model which demonstrates all of these features. The RAS Pathway Map model was drawn by Dr. Frank McCormick in collaboration with the NCI RAS Initiative community.</span></p>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- panel 1 end -->
+                        <!-- panel 2 start -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse2">Building models from text</a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p><span style="font-weight: 400;">Users have the ability to define their own biological models in text under the &ldquo;Build&rdquo; tab. Here, we start off with the text necessary to build The NCI RAS Pathway Map as an example. A full list of the mechanistic relationships that can be represented by INDRA (and therefore INDRA-IPM) can be found at https://indra.readthedocs.io/en/latest/modules/statements.html, and examples of models described in natural language (processed via the TRIPS system and assembled by INDRA) can be found in Gyori, Bachman, et. al. (2017).</span></p>
+                                    <p><span style="font-weight: 400;">Users should note that the natural language processing systems are fairly robust but not without limitations. Proper grammar and punctuation should be used. The reading systems do not consider newlines to be sentence separators and may return erroneous output for sentences which are not terminated with a period.</span></p>
+                                    <p><span style="font-weight: 400;">The recognition and grounding of named entities (proteins, etc.) to database identifiers is done automatically. Nevertheless, using standardized names such as HGNC symbols (as opposed to informal synonyms) is preferred to avoid ambiguity. To normalize node names in the pathway map, the IPM performs name standardization, in which entities mentioned by their synonyms are normalized to standard names such as HGNC symbols (for instance, MEK1, Map2k1 and Mek1 are all normalized to the standard symbol MAP2K1). Note that by clicking on a node, a tooltip opens that allows linking out to databases (HGNC, UniProt, CiteAb), and checking the original text that the standardized node was created from.</span></p>
+                                    <p><span style="font-weight: 400;">INDRA-IPM also recognizes protein families and complexes and grounds them in the FamPlex ontology (</span><a href="https://github.com/sorgerlab/famplex/"><span style="font-weight: 400;">https://github.com/sorgerlab/famplex/</span></a><span style="font-weight: 400;">). In some cases, there is ambiguity in the name of a specific gene and a family it is part of. An example of this is the grounding of &ldquo;JUN&rdquo; from text to the JUN family, which also includes the JUN gene. In this case the user can use a synonym such as &ldquo;c-JUN&rdquo; that refers to the singular entity in order to reference only the gene and not the family.</span></p>
+                                    <p><span style="font-weight: 400;">We have exposed two reading systems to users. The REACH reader developed by the CLU Lab at the University of Arizona (https://github.com/clulab/reach) is an information extraction system for the biomedical domain, which aims to read scientific literature and extract cancer signaling pathways. We recommend users try REACH first due to its speed. The TRIPS/DRUM system (http://trips.ihmc.us/parser/cgi/drum) developed by IHMC may offer greater mechanistic detail in some use cases (for instance, it supports recognizing complex molecular conditions such as &ldquo;BRAF-V600E not bound to Vemurafenib&rdquo;), but it requires significantly longer to run.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- panel 2 end -->
+                        <!-- panel 3 start -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse3">Contextualizing models</a>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p><span style="font-weight: 400;">Users are able to project data from the Cancer Cell Line Encyclopedia (CCLE) onto their pathway maps. This is done automatically when the IPM is loaded initially (using the LOXIMVI skin cancer cell line) and can be changed to any other CCLE cell line in the Model Options dialogue panel. Wild type genes are colored green, while mutated genes are colored orange. Color intensity indicates the relative level of expression. Context is unavailable for gray nodes because they were not measured in CCLE.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- panel 3 end --> 
+                        <!-- panel 4 start -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse4">Sharing models</a>
+                                </h4>
+                            </div>
+                            <div id="collapse4" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                <p><span style="font-weight: 400;">Users can share models using the NDEx network sharing website (</span><a href="http://ndexbio.org"><span style="font-weight: 400;">http://ndexbio.org</span></a><span style="font-weight: 400;">). To upload the current model, click the &ldquo;NDEX&rdquo; button at the bottom of the interface, then click &ldquo;Upload&rdquo;. A link to NDEx will appear one the upload is complete.</span></p>
+                                <p><span style="font-weight: 400;">One can load a model by entering the unique key at the end of this link (e.g., </span><span style="font-weight: 400;">9b901d8f-2e2d-11e9-9f06-0ac135e8bacf) into the Load field. Alternatively, one can share the link in the address bar (e.g., pathwaymap.indra.bio/?uuid=9b901d8f-2e2d-11e9-9f06-0ac135e8bacf) which will send a user to the IPM website and immediately load the shared model. Shared models preserve their text description, INDRA statements, graph layout, cell line context, and any evidence retrieved from INDRA DB.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- panel 4 end -->
+                        <!-- panel 5 start -->
+                        <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse5">Exporting models</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse5" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                            <p><span style="font-weight: 400;">Users can export models in a variety of formats.</span></p>
+                                            <ul>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">INDRA JSON will export the model statements as a in the JSON format. These can be imported into INDRA or processed separately. The INDRA JSON format is specified at </span><a href="https://github.com/sorgerlab/indra/blob/master/indra/resources/statements_schema.json"><span style="font-weight: 400;">https://github.com/sorgerlab/indra/blob/master/indra/resources/statements_schema.json</span></a></li>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">PySB, SBML, BNGL, Kappa will export executable models in these formats. These modeling formalisms allow parameterizing and simulating models, and evaluating them against time-course data. More information about these formats and tools supporting them is available at the following places:</span></li>
+                                            <ul>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">PySB: </span><a href="http://pysb.org/"><span style="font-weight: 400;">http://pysb.org/</span></a></li>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">SBML: </span><a href="http://sbml.org/"><span style="font-weight: 400;">http://sbml.org/</span></a></li>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">BNGL: </span><a href="http://visualizlab.org/rulebender/index.html"><span style="font-weight: 400;">http://visualizlab.org/rulebender/index.html</span></a><span style="font-weight: 400;"> and </span><a href="https://www.csb.pitt.edu/Faculty/Faeder/?page_id=409"><span style="font-weight: 400;">https://www.csb.pitt.edu/Faculty/Faeder/?page_id=409</span></a></li>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">Kappa: </span><a href="https://kappalanguage.org/"><span style="font-weight: 400;">https://kappalanguage.org/</span></a></li>
+                                            </ul>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">SBGN will export a model in the Systems Biology Graphical Notation format. Documentation and tools supporting SBGN are available at: http://sbgn.github.io/sbgn/. Note that layout information is not included in exported SBGN models, however tools such as Newt (http://web.newteditor.org/) have built-in layout algorithms.</span></li>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">CX will export a model in the .cx format which can be opened in Cytoscape3 and also uploaded to NDEx. </span></li>
+                                            <ul>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">Cytoscape enables network visualization and provides access to a large ecosystem of analysis plugins; more information is available at: </span><a href="https://cytoscape.org/cy3.html"><span style="font-weight: 400;">https://cytoscape.org/cy3.html</span></a></li>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">NDEx is a network sharing and versioning website with a programmatic API for accessing networks: </span><a href="http://ndexbio.org/"><span style="font-weight: 400;">http://ndexbio.org/</span></a></li>
+                                            </ul>
+                                            <li style="font-weight: 400;"><span style="font-weight: 400;">PNG will export a high-resolution .png image of the current graph. This feature is useful for taking snapshots of a pathway map for inclusion into documents or presentations.</span></li>
+                                            </ul>
+                                            <p><span style="font-weight: 400;">In order to simplify the user interface, only PNG export is available on mobile devices with limited screen width.</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- panel 5 end -->
+                        <!-- panel 6 start -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse6">Funding</a>
+                                </h4>
+                            </div>
+                            <div id="collapse6" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                        <p><span style="font-weight: 400;">This work was funded by ARO Grants W911NF‐14‐1‐0397 and W911NF‐15‐1‐0544 under the DARPA Big Mechanism and Communicating with Computers programs, and by NIGMS Grant P50GM107618.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- panel 6 end -->
+                        <!-- panel 7 start -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse7">Privacy</a>
+                                </h4>
+                            </div>
+                            <div id="collapse7" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">Our API backend receives user-generated requests such as those for reading, contextualization, and NDEx sharing.</span></li>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">Our server logs the IP addresses which make requests to the API.</span></li>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">The data from some user requests is forwarded to external APIs such as TRIPS (reading), cBioPortal (contextualization), NDEx in order to implement these functions.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- panel 7 end -->   
+                      </div>  
                   </div>
                 </div>
 
@@ -315,17 +395,24 @@ TIAM activates RAC, which activates PAK.
   </div>
   <div class="row" align="center">
     <div class="col-md-12">
-              <b>Download</b>
-              <button id='downloadINDRA' type="submit" class="btn btn-default hidden-xs">INDRA JSON</button>
-              <button id='downloadPySB' type="submit" class="btn btn-default hidden-xs">PySB</button>
-              <button id='downloadSBML' type="submit" class="btn btn-default hidden-xs">SBML</button>
-              <button id='downloadSBGN' type="submit" class="btn btn-default hidden-xs">SBGN</button>
-              <button id='downloadBNGL' type="submit" class="btn btn-default hidden-xs">BNGL</button>
-              <button id='downloadKappa' type="submit" class="btn btn-default hidden-xs">Kappa</button>
-              <button id='downloadCX' type="submit" class="btn btn-default hidden-xs">CX</button>
-              <button id='downloadPNG' type="submit" class="btn btn-default">PNG</button>
+              <b class="hidden-sm hidden-xs">Download</b>
+              <button id='downloadINDRA' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Download the model statements generated by INDRA in JSON format.">INDRA JSON</button>
+              <button id='downloadPySB' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA into an executable PySB model.">PySB</button>
+              <button id='downloadSBML' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a SBML model.">SBML</button>
+              <button id='downloadSBGN' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a SBGN model.">SBGN</button>
+              <button id='downloadBNGL' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a BNGL model.">BNGL</button>
+              <button id='downloadKappa' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a Kappa model.">Kappa</button>
+              <button id='downloadCX' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a Cytoscape CX model.">CX</button>
+              <button id='downloadPNG' type="submit" class="btn btn-default" data-placement="bottom" data-toggle="tooltip" title="Download a high-resolution PNG image of the current model.">PNG</button>
               <span>|</span>
-              <button id='NDEX' type="submit" class="btn btn-default" data-toggle="modal" data-target="#ndexModal">NDEX</button>
+              <span rel="tooltip" data-placement="bottom" data-toggle="tooltip" title="Upload, download, and share the current model via NDEx.">
+                  <button id='NDEX' type="submit" class="btn btn-default" data-toggle="modal" data-target="#ndexModal">NDEx</button>
+              </span>
+              <span>|</span>
+              <span rel="tooltip" data-placement="bottom" data-toggle="tooltip" title="Toggle force-directed layout.">
+                <input id="layoutToggle" type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-on="Forces" data-off="Off" autocomplete="off">
+              </span>
+              
     <!-- graph : end -->
   </div>
   </div>
@@ -342,7 +429,7 @@ TIAM activates RAC, which activates PAK.
                     <h4>NDEX Download</h4>
                     <div class="form-group">
                         <label for="ndexUUID"></label>
-                        <input type="email" class="form-control" id="ndexUUID" placeholder="e.g. - ea778a86-91b9-11e8-a4bf-0ac135e8bacf">
+                        <input type="email" class="form-control" id="ndexUUID" placeholder="e.g. - ea778a86-91b9-11e8-a4bf-0ac135e8bacf" autocomplete="off">
                     </div>
                     <div class= 'btn-div'>
                         <button id='loadNDEX' type="submit" class="btn btn-primary">Load</button>

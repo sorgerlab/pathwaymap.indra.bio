@@ -14,6 +14,7 @@ select.selectpicker {
 
 .bootstrap-select {
   width: 220px \0; /*IE9 and below*/
+  vertical-align: middle;
 
   // The selectpicker button
   > .dropdown-toggle {
@@ -89,6 +90,7 @@ select.selectpicker {
     width: @width-default;
   }
 
+  > select.mobile-device:focus + .dropdown-toggle,
   .dropdown-toggle:focus {
     outline: thin dotted #333333 !important;
     outline: 5px auto -webkit-focus-ring-color !important;
@@ -263,7 +265,7 @@ select.selectpicker {
       position: relative;
 
       &.active small {
-        color: #fff;
+        color: @input-alt-color-placeholder !important;
       }
 
       &.disabled a {

@@ -1,4 +1,4 @@
-function modalEdges(cy){
+function modalEdges(cy, requester){
     cy.edges().on('tap', function(e){
         var current_edge = this;
         var src_tar_list = getSourcesTargets(current_edge)
@@ -35,18 +35,18 @@ function modalEdges(cy){
         }
         var f_uuids = getFilteredUUIDs(current_edge);
         deactivateAllButtons()
-        updateStmtsBox(f_uuids)
+        updateStmtsBox(f_uuids, requester)
         $(".btn-src").on('click', function(b){
             toggleButton(b.target)
             f_uuids = getFilteredUUIDs(current_edge)
             console.log(f_uuids)
-            updateStmtsBox(f_uuids)
+            updateStmtsBox(f_uuids, requester)
         })
         $(".btn-targ").on('click', function(b){
             toggleButton(b.target)
             f_uuids = getFilteredUUIDs(current_edge)
             console.log(f_uuids)
-            updateStmtsBox(f_uuids)
+            updateStmtsBox(f_uuids, requester)
         })
     })
 }
@@ -234,7 +234,7 @@ function statementPanelAddEvidence(button_ele){
     }
 }
 
-function updateStmtsBox(uuid_set){
+function updateStmtsBox(uuid_set, requester){
     var uuid_list = new Array(...uuid_set)
     var stmts_box = $('#edgeModal').find('.modal-body').find('.edgeModal-stmtsbox')[0]
     stmts_box.innerHTML = null
@@ -278,7 +278,7 @@ function updateStmtsBox(uuid_set){
             statementPanelAddEvidence(button_ele);
         }
         else {
-            let evidence_promise = getEvidence(ev_query);
+            let evidence_promise = requester.getEvidence(ev_query);
             evidence_promise.then(function(res){
                 console.log(res.statements);
                 evidence[uuid] = res.statements;
