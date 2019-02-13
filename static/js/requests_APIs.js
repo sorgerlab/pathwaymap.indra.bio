@@ -14,8 +14,9 @@ class Requester {
       clearTimeout(this.timeout)
       if (this.message != "Ready.") {
         $.notify(this.message,
-          { className: 'info', globalPosition: 'top center' })
+          { className: 'info', globalPosition: 'top center', autoHide: false})
         console.log(this.message)
+        hide_current_notifications();
       }
       else if ((this.message == "Ready.") && (this.counter%2 == 0)){
         // timeout here will hide modal. need even number of sent
@@ -304,4 +305,13 @@ function bind_this (target) {
   };
   const proxy = new Proxy(target, handler);
   return proxy;
+}
+
+function hide_current_notifications(){
+  var current_notifs = $('.notifyjs-wrapper')
+  window.setTimeout(function(){
+    var next_notifs = $('.notifyjs-wrapper')
+    var filtered_notifs = current_notifs.filter(next_notifs)
+    filtered_notifs.trigger('notify-hide')
+  }, 5000)
 }

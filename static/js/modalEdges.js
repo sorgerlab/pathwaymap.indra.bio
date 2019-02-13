@@ -186,9 +186,19 @@ function statementPanelAddEvidence(button_ele){
     var evs = [];
     for (st of evidence_stmts){
 	    for (ev of st.evidence){
+            if (!ev.pmid){
+                continue
+            }
+            if ((ev.source_api != "reach") && (ev.source_api != "trips") && (ev.source_api != "sparser")){
+                ev.text = "( No text available from source: " + ev.source_api.toUpperCase() + " )"
+            }
 		    evs.push([ev.text, ev.pmid])
 	    }
     }
+    evs.sort(function (a, b) {
+        var len_diff = -(a[0].length - b[0].length)
+        return len_diff;
+      })
     if (evs.length > 0){
         for (ev of evs){
             var ev_panel_row_item = document.createElement("div");
