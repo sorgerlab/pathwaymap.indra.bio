@@ -1,6 +1,5 @@
 class Requester {
   constructor(){
-    this.counter = 0;
     this.message = "Ready.";
     this.timeout = window.setTimeout(0);
   }
@@ -16,9 +15,7 @@ class Requester {
       }
     }
     else {
-      this.counter += 1;
       if (this.message != message){
-        console.log(this.counter%2)
         // do we have a different message? change it!
         // will toggle modal to show here
         this.message = message;
@@ -28,10 +25,14 @@ class Requester {
             { className: 'info', globalPosition: 'top center', autoHide: false})
           console.log(this.message)
         }
-        else if ((this.message == "Ready.") && ((this.counter%2) == 0)) {
-          hide_current_notifications();
-          this.timeout = window.setTimeout(() => {$.notify(this.message,
-            { className: 'success', globalPosition: 'top center' })}, 100)
+        else if (this.message == "Ready.") {
+          var notif_delay = 3000;
+          hide_current_notifications(notif_delay);
+          this.timeout = window.setTimeout(() => {
+            hide_current_notifications(0)
+            $.notify(this.message,
+                    { className: 'success', globalPosition: 'top center' });
+          }, notif_delay)
           console.log(this.message)
         }
       }
@@ -317,7 +318,7 @@ function bind_this (target) {
   return proxy;
 }
 
-function hide_current_notifications(timeout_ms=0){
+function hide_current_notifications(timeout_ms = 0){
   var current_notifs = $('.notifyjs-wrapper')
   window.setTimeout(function(){
     var next_notifs = $('.notifyjs-wrapper')

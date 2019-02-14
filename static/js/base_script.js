@@ -450,20 +450,21 @@ function contextualizeNodesCCLE(cy, new_cell_line, requester){
   mrna_promise = rq.get_ccle_mrna(gene_names, new_cell_line)
   mutations_promise = rq.get_ccle_mutations(gene_names, new_cell_line)
   Promise.all([mrna_promise, mutations_promise]).then(function(pp){
-    mrna = pp[0]
-    mutations = pp[1]
-    check_response = (mrna.mrna_amounts[new_cell_line] != null)
+    var new_mrna = pp[0]
+    var new_mutations = pp[1]
+    check_response = (new_mrna.mrna_amounts[new_cell_line] != null)
     if (check_response){
-      cell_line = new_cell_line
-      set_context(cy, gene_names, mrna, mutations);
-      window.setTimeout(requester.update_state, 2000, "Ready.")
+      cell_line = new_cell_line;
+      mrna = new_mrna;
+      mutations = new_mutations;
     }
     else {
       requester.update_state("Cell line data not found, restoring previous settings.")
-      window.setTimeout(requester.update_state, 2000, "Ready.")
       $('#cellSelectDynamic').val("model_" + cell_line + ".json")
       $('#cellSelectDynamic').selectpicker('render')
     }
+    set_context(cy, gene_names, mrna, mutations);
+    requester.update_state("Ready.")
   })
 }
 
