@@ -6,22 +6,34 @@ class Requester {
   }
 
   update_state(message){
-    this.counter += 1;
-    if (this.message != message){
-      // do we have a different message? change it!
-      // will toggle modal to show here
-      this.message = message;
-      clearTimeout(this.timeout)
-      if (this.message != "Ready.") {
+    if (location.protocol == 'https:'){
+      var https_warn = "Loading the site over HTTPS may cause API errors."
+      if (this.message != https_warn){
+        this.message = https_warn;
+        $('.notifyjs-wrapper').trigger('notify-hide')
         $.notify(this.message,
-          { className: 'info', globalPosition: 'top center', autoHide: false})
-        console.log(this.message)
+                { className: 'error', globalPosition: 'top center', autoHide: false})
       }
-      else {
-        hide_current_notifications();
-        this.timeout = window.setTimeout(() => {$.notify(this.message,
-          { className: 'success', globalPosition: 'top center' })}, 100)
-        console.log(this.message)
+    }
+    else {
+      if (this.message != message){
+        this.counter += 1;
+        console.log(this.counter%2)
+        // do we have a different message? change it!
+        // will toggle modal to show here
+        this.message = message;
+        clearTimeout(this.timeout)
+        if (this.message != "Ready.") {
+          $.notify(this.message,
+            { className: 'info', globalPosition: 'top center', autoHide: false})
+          console.log(this.message)
+        }
+        else if ((this.message == "Ready.") && ((this.counter%2) == 0)) {
+          hide_current_notifications();
+          this.timeout = window.setTimeout(() => {$.notify(this.message,
+            { className: 'success', globalPosition: 'top center' })}, 100)
+          console.log(this.message)
+        }
       }
     }
   }

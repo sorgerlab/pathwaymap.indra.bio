@@ -233,6 +233,47 @@ TIAM activates RAC, which activates PAK.
                   <div id="about" class="tab-pane fade in">
                     <br>
                     <div class="panel-group">
+                        <!-- panel 0 start -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse0">Quick Start</a>
+                                </h4>
+                            </div>
+                            <div id="collapse0" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p><span style="font-weight: 400;">Welcome to the INDRA Interactive Pathway Map (IPM) built and maintained by the </span><a href="https://indralab.github.io/"><span style="font-weight: 400;">INDRA team</span></a><span style="font-weight: 400;"> at the</span> <a href="http://hits.harvard.edu/"><span style="font-weight: 400;">Harvard Program in Therapeutic Science (HiTS)</span></a><span style="font-weight: 400;">.</span></p>
+                                    <p><strong>Reading and using the pathway map:</strong></p>
+                                    <ul>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Nodes represent biological entities mentioned in text.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Nodes representing families are subdivided into pie charts.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Wild-type genes are colored </span><strong style="color:green">green</strong><span style="font-weight: 400;">.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Mutated genes are colored </span><strong style="color:orange">orange</strong><span style="font-weight: 400;">.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">The intensity of each color corresponds to the expression level of a gene in CCLE.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Clicking any node provides additional context by linking out to external resources.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Clicking any edge will allow a user to query INDRA DB for evidence.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">The force-directed active layout can be disabled by toggling the &ldquo;Forces&rdquo; button.</span></li>
+                                    </ul>
+                                    <p><strong>Build your own model from text</strong></p>
+                                    <ul>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Open the Build tab.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Enter a list of sentences describing biological mechanisms.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Click load and exit the menu.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Your model should be ready momentarily.</span></li>
+                                    </ul>
+                                    <p><strong>Model context</strong></p>
+                                    <ul>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Network models can be contextualized using the Context tab.</span></li>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">Users can load gene expression and mutation data from each of the 900+ cell lines available in the CCLE.</span></li>
+                                    </ul>
+                                    <p><strong>Contact</strong></p>
+                                    <ul>
+                                    <li style="font-weight: 400;"><span style="font-weight: 400;">If you encounter any technical problems or would like to get in touch with the team please emails us at </span><a href="mailto:indra.sysbio@gmail.com"><span style="font-weight: 400;">indra.sysbio@gmail.com</span></a><span style="font-weight: 400;">.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- panel 0 end -->
                         <!-- panel 1 start -->
                         <div class="panel panel-default">
                           <div class="panel-heading">
@@ -242,19 +283,18 @@ TIAM activates RAC, which activates PAK.
                           </div>
                           <div id="collapse1" class="panel-collapse collapse">
                             <div class="panel-body">
-                                    <p><span>This website implements an interactive pathway map (IPM) built using INDRA, an automated model assembly system for molecular biology. The goal of the INDRA-IPM is to allow users to build, contextualize, and share biological pathway models by describing them in natural language.</span></p>
-                                    <p><span>The visualization aims to display pathways in a visual style similar to that used by biologists in textbooks and presentations. In addition we offer a layer of contextualization and an interactive user interface:</span></p>
-                                    <ul>
-                                    <li><span>Nodes represent biological entities mentioned in text.</span></li>
-                                    <li><span>Nodes representing families are subdivided into pie charts.</span></li>
-                                    <li><span>Wild-type genes are colored green.</span></li>
-                                    <li><span>Mutated genes are colored orange.</span></li>
-                                    <li><span>The intensity of each color corresponds to the expression level of a gene in CCLE.</span></li>
-                                    <li><span>Clicking any node provides additional context by linking out to CiteAb, HGNC, and UniProt.</span></li>
-                                    <li><span>Clicking any edge will allow a user to filter the sources and targets of that edge and make a request for evidence found in literature and curated database that is stored in INDRA DB.</span></li>
-                                    <li><span>The force-directed active layout which snaps nodes to their positions can be disabled by toggling the &ldquo;Forces&rdquo; button.</span></li>
-                                    </ul>
-                                    <p><span>We start off displaying a pre-built model which demonstrates all of these features. The RAS Pathway Map model was drawn by Dr. Frank McCormick in collaboration with the NCI RAS Initiative community.</span></p>
+                                <p><span style="font-weight: 400;">This website implements an interactive pathway map (IPM) built using INDRA, an automated model assembly system for molecular biology. The goal of INDRA-IPM is to allow users to build, contextualize, and share biological pathway models by describing them in natural language.</span></p>
+                                <p><span style="font-weight: 400;">The visualization aims to display pathways in a visual style similar to that used by biologists in textbooks and presentations. In addition we offer a layer of contextualization and an interactive user interface:</span></p>
+                                <ul>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Nodes represent biological entities mentioned in text.</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Nodes representing families are subdivided into pie charts.</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Wild-type genes are colored </span><strong style="color:green">green</strong><span style="font-weight: 400;">.</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Mutated genes are colored </span><strong style="color:orange">orange</strong><span style="font-weight: 400;">.</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">The intensity of each color corresponds to the expression level of a gene in CCLE.</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Clicking any node provides additional context by linking out to CiteAb, HGNC, and UniProt.</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Clicking any edge will allow a user to filter the sources and targets of that edge and make a request for evidence found in literature and curated database that is stored in INDRA DB.</span></li>
+                                </ul>
+                                <p><span style="font-weight: 400;">We start off displaying a pre-built model which demonstrates all of these features. The </span><a href="https://www.cancer.gov/research/key-initiatives/ras/ras-central/blog/2014/what-do-we-mean-ras-pathway"><span style="font-weight: 400;">RAS Pathway Map model</span></a><span style="font-weight: 400;"> was drawn by Dr. Frank McCormick in collaboration with the NCI RAS Initiative community.</span></p>
                             </div>
                           </div>
                         </div>
@@ -268,11 +308,11 @@ TIAM activates RAC, which activates PAK.
                             </div>
                             <div id="collapse2" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <p><span style="font-weight: 400;">Users have the ability to define their own biological models in text under the &ldquo;Build&rdquo; tab. Here, we start off with the text necessary to build The NCI RAS Pathway Map as an example. A full list of the mechanistic relationships that can be represented by INDRA (and therefore INDRA-IPM) can be found at https://indra.readthedocs.io/en/latest/modules/statements.html, and examples of models described in natural language (processed via the TRIPS system and assembled by INDRA) can be found in Gyori, Bachman, et. al. (2017).</span></p>
+                                    <p><span style="font-weight: 400;">Users have the ability to define their own biological models in text under the &ldquo;Build&rdquo; tab. Here, we start off with the text necessary to build The NCI RAS Pathway Map as an example. A full list of the mechanistic relationships that can be represented by INDRA (and therefore INDRA-IPM) can be found in the software </span><a href="https://indra.readthedocs.io/en/latest/modules/statements.html"><span style="font-weight: 400;">documentation</span></a><span style="font-weight: 400;">, and examples of models described in natural language (processed via the TRIPS system and assembled by INDRA) can be found in </span><a href="http://msb.embopress.org/content/13/11/954.long"><span style="font-weight: 400;">Gyori, Bachman, et. al. (2017)</span></a><span style="font-weight: 400;">.</span></p>
                                     <p><span style="font-weight: 400;">Users should note that the natural language processing systems are fairly robust but not without limitations. Proper grammar and punctuation should be used. The reading systems do not consider newlines to be sentence separators and may return erroneous output for sentences which are not terminated with a period.</span></p>
                                     <p><span style="font-weight: 400;">The recognition and grounding of named entities (proteins, etc.) to database identifiers is done automatically. Nevertheless, using standardized names such as HGNC symbols (as opposed to informal synonyms) is preferred to avoid ambiguity. To normalize node names in the pathway map, the IPM performs name standardization, in which entities mentioned by their synonyms are normalized to standard names such as HGNC symbols (for instance, MEK1, Map2k1 and Mek1 are all normalized to the standard symbol MAP2K1). Note that by clicking on a node, a tooltip opens that allows linking out to databases (HGNC, UniProt, CiteAb), and checking the original text that the standardized node was created from.</span></p>
-                                    <p><span style="font-weight: 400;">INDRA-IPM also recognizes protein families and complexes and grounds them in the FamPlex ontology (</span><a href="https://github.com/sorgerlab/famplex/"><span style="font-weight: 400;">https://github.com/sorgerlab/famplex/</span></a><span style="font-weight: 400;">). In some cases, there is ambiguity in the name of a specific gene and a family it is part of. An example of this is the grounding of &ldquo;JUN&rdquo; from text to the JUN family, which also includes the JUN gene. In this case the user can use a synonym such as &ldquo;c-JUN&rdquo; that refers to the singular entity in order to reference only the gene and not the family.</span></p>
-                                    <p><span style="font-weight: 400;">We have exposed two reading systems to users. The REACH reader developed by the CLU Lab at the University of Arizona (https://github.com/clulab/reach) is an information extraction system for the biomedical domain, which aims to read scientific literature and extract cancer signaling pathways. We recommend users try REACH first due to its speed. The TRIPS/DRUM system (http://trips.ihmc.us/parser/cgi/drum) developed by IHMC may offer greater mechanistic detail in some use cases (for instance, it supports recognizing complex molecular conditions such as &ldquo;BRAF-V600E not bound to Vemurafenib&rdquo;), but it requires significantly longer to run.</span></p>
+                                    <p><span style="font-weight: 400;">INDRA-IPM also recognizes protein families and complexes and grounds them in the </span><a href="https://github.com/sorgerlab/famplex/"><span style="font-weight: 400;">FamPlex ontology</span></a><span style="font-weight: 400;">. In some cases, there is ambiguity in the name of a specific gene and a family it is part of. An example of this is the grounding of &ldquo;JUN&rdquo; from text to the JUN family, which also includes the JUN gene. In this case the user can use a synonym such as &ldquo;c-JUN&rdquo; that refers to the singular entity in order to reference only the gene and not the family.</span></p>
+                                    <p><span style="font-weight: 400;">We have exposed two reading systems to users. The </span><a href="https://github.com/clulab/reach"><span style="font-weight: 400;">REACH</span></a><span style="font-weight: 400;"> reader developed by the CLU Lab at the University of Arizona is an information extraction system for the biomedical domain, which aims to read scientific literature and extract cancer signaling pathways. We recommend users try REACH first due to its speed. The </span><a href="http://trips.ihmc.us/parser/cgi/drum"><span style="font-weight: 400;">TRIPS/DRUM</span></a><span style="font-weight: 400;"> system developed by IHMC may offer greater mechanistic detail in some use cases (for instance, it supports recognizing complex molecular conditions such as &ldquo;BRAF-V600E not bound to Vemurafenib&rdquo;), but it requires significantly longer to run.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -300,8 +340,8 @@ TIAM activates RAC, which activates PAK.
                             </div>
                             <div id="collapse4" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                <p><span style="font-weight: 400;">Users can share models using the NDEx network sharing website (</span><a href="http://ndexbio.org"><span style="font-weight: 400;">http://ndexbio.org</span></a><span style="font-weight: 400;">). To upload the current model, click the &ldquo;NDEX&rdquo; button at the bottom of the interface, then click &ldquo;Upload&rdquo;. A link to NDEx will appear one the upload is complete.</span></p>
-                                <p><span style="font-weight: 400;">One can load a model by entering the unique key at the end of this link (e.g., </span><span style="font-weight: 400;">9b901d8f-2e2d-11e9-9f06-0ac135e8bacf) into the Load field. Alternatively, one can share the link in the address bar (e.g., pathwaymap.indra.bio/?uuid=9b901d8f-2e2d-11e9-9f06-0ac135e8bacf) which will send a user to the IPM website and immediately load the shared model. Shared models preserve their text description, INDRA statements, graph layout, cell line context, and any evidence retrieved from INDRA DB.</span></p>
+                                    <p><span style="font-weight: 400;">Users can share models using the </span><a href="http://ndexbio.org"><span style="font-weight: 400;">NDEx</span></a><span style="font-weight: 400;"> network sharing website . To upload the current model, click the &ldquo;NDEX&rdquo; button at the bottom of the interface, then click &ldquo;Upload&rdquo;. A link to NDEx will appear one the upload is complete.</span></p>
+                                    <p><span style="font-weight: 400;">One can load a model by entering the unique key at the end of this link (e.g., </span><span style="font-weight: 400;">9b901d8f-2e2d-11e9-9f06-0ac135e8bacf) into the Load field. Alternatively, one can share the link in the address bar (e.g., pathwaymap.indra.bio/?uuid=9b901d8f-2e2d-11e9-9f06-0ac135e8bacf) which will send a user to the IPM website and immediately load the shared model. Shared models preserve their text description, INDRA statements, graph layout, cell line context, and any evidence retrieved from INDRA DB.</span></p>
                                 </div>
                             </div>
                         </div>
@@ -315,25 +355,34 @@ TIAM activates RAC, which activates PAK.
                                 </div>
                                 <div id="collapse5" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                            <p><span style="font-weight: 400;">Users can export models in a variety of formats.</span></p>
-                                            <ul>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">INDRA JSON will export the model statements as a in the JSON format. These can be imported into INDRA or processed separately. The INDRA JSON format is specified at </span><a href="https://github.com/sorgerlab/indra/blob/master/indra/resources/statements_schema.json"><span style="font-weight: 400;">https://github.com/sorgerlab/indra/blob/master/indra/resources/statements_schema.json</span></a></li>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">PySB, SBML, BNGL, Kappa will export executable models in these formats. These modeling formalisms allow parameterizing and simulating models, and evaluating them against time-course data. More information about these formats and tools supporting them is available at the following places:</span></li>
-                                            <ul>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">PySB: </span><a href="http://pysb.org/"><span style="font-weight: 400;">http://pysb.org/</span></a></li>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">SBML: </span><a href="http://sbml.org/"><span style="font-weight: 400;">http://sbml.org/</span></a></li>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">BNGL: </span><a href="http://visualizlab.org/rulebender/index.html"><span style="font-weight: 400;">http://visualizlab.org/rulebender/index.html</span></a><span style="font-weight: 400;"> and </span><a href="https://www.csb.pitt.edu/Faculty/Faeder/?page_id=409"><span style="font-weight: 400;">https://www.csb.pitt.edu/Faculty/Faeder/?page_id=409</span></a></li>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">Kappa: </span><a href="https://kappalanguage.org/"><span style="font-weight: 400;">https://kappalanguage.org/</span></a></li>
-                                            </ul>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">SBGN will export a model in the Systems Biology Graphical Notation format. Documentation and tools supporting SBGN are available at: http://sbgn.github.io/sbgn/. Note that layout information is not included in exported SBGN models, however tools such as Newt (http://web.newteditor.org/) have built-in layout algorithms.</span></li>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">CX will export a model in the .cx format which can be opened in Cytoscape3 and also uploaded to NDEx. </span></li>
-                                            <ul>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">Cytoscape enables network visualization and provides access to a large ecosystem of analysis plugins; more information is available at: </span><a href="https://cytoscape.org/cy3.html"><span style="font-weight: 400;">https://cytoscape.org/cy3.html</span></a></li>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">NDEx is a network sharing and versioning website with a programmatic API for accessing networks: </span><a href="http://ndexbio.org/"><span style="font-weight: 400;">http://ndexbio.org/</span></a></li>
-                                            </ul>
-                                            <li style="font-weight: 400;"><span style="font-weight: 400;">PNG will export a high-resolution .png image of the current graph. This feature is useful for taking snapshots of a pathway map for inclusion into documents or presentations.</span></li>
-                                            </ul>
-                                            <p><span style="font-weight: 400;">In order to simplify the user interface, only PNG export is available on mobile devices with limited screen width.</span></p>
+                                        <p><span style="font-weight: 400;">Users can export models in a variety of formats.</span></p>
+                                        <ul>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">INDRA JSON will export the model statements as a in the JSON format. These can be imported into INDRA or processed separately. The INDRA JSON format is specified in the software </span><a href="https://github.com/sorgerlab/indra/blob/master/indra/resources/statements_schema.json"><span style="font-weight: 400;">documentation</span></a><span style="font-weight: 400;">.</span></li>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">PySB, SBML, BNGL, Kappa will export executable models in these formats. These modeling formalisms allow parameterizing and simulating models, and evaluating them against time-course data. More information about these formats and tools supporting them is available at the following places:</span></li>
+                                        <ul>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">PySB</span></li>
+                                        <ul>
+                                        <li style="font-weight: 400;"><a href="http://pysb.org/"><span style="font-weight: 400;">http://pysb.org/</span></a></li>
+                                        </ul>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">SBML</span></li>
+                                        <ul>
+                                        <li style="font-weight: 400;"><a href="http://sbml.org/"><span style="font-weight: 400;">http://sbml.org/</span></a></li>
+                                        </ul>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">BNGL: </span></li>
+                                        <ul>
+                                        <li style="font-weight: 400;"><a href="http://visualizlab.org/rulebender/index.html"><span style="font-weight: 400;">http://visualizlab.org/rulebender/index.html</span></a></li>
+                                        <li style="font-weight: 400;"><a href="https://www.csb.pitt.edu/Faculty/Faeder/?page_id=409"><span style="font-weight: 400;">https://www.csb.pitt.edu/Faculty/Faeder/?page_id=409</span></a></li>
+                                        </ul>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">Kappa</span></li>
+                                        <ul>
+                                        <li style="font-weight: 400;"><a href="https://kappalanguage.org/"><span style="font-weight: 400;">https://kappalanguage.org/</span></a></li>
+                                        </ul>
+                                        </ul>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">SBGN will export a model in the Systems Biology Graphical Notation format. Documentation and tools supporting SBGN are </span><a href="http://sbgn.github.io/sbgn/."><span style="font-weight: 400;">available</span></a><span style="font-weight: 400;">. Note that layout information is not included in exported SBGN models, however tools such as </span><a href="http://web.newteditor.org/"><span style="font-weight: 400;">Newt</span></a><span style="font-weight: 400;"> have built-in layout algorithms.</span></li>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">CX will export a model in the .cx format which can be opened in </span><a href="https://cytoscape.org/"><span style="font-weight: 400;">Cytoscape</span></a><span style="font-weight: 400;"> and also uploaded to NDEx. Cytoscape enables network visualization and provides access to a large ecosystem of analysis plugins; </span><a href="http://ndexbio.org/"><span style="font-weight: 400;">NDEx</span></a><span style="font-weight: 400;"> is a network sharing and versioning website with a programmatic API for accessing networks.</span></li>
+                                        <li style="font-weight: 400;"><span style="font-weight: 400;">PNG will export a high-resolution .png image of the current graph. This feature is useful for taking snapshots of a pathway map for inclusion into documents or presentations.</span></li>
+                                        </ul>
+                                        <p><span style="font-weight: 400;">In order to simplify the user interface, only PNG export is available on mobile devices with limited screen width.</span></p>
                                     </div>
                                 </div>
                             </div>
