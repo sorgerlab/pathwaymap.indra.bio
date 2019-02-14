@@ -16,8 +16,8 @@ class Requester {
       }
     }
     else {
+      this.counter += 1;
       if (this.message != message){
-        this.counter += 1;
         console.log(this.counter%2)
         // do we have a different message? change it!
         // will toggle modal to show here
