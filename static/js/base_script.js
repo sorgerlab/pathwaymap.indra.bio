@@ -178,6 +178,12 @@ $(function(){
     });
   });
 
+  $("#downloadKappaIM").click(function(){
+    rq.assembleKappaIM(stmts).then(function (res) {
+      download('model_kappa_im.png', res['image']);
+    });
+  });
+
   $("#downloadBNGL").click(function(){
     rq.assembleBNGL(stmts).then(function (res) {
       download('model.bngl', res['model']);

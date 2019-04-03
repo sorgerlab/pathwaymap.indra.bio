@@ -209,6 +209,11 @@ class Requester {
     return this.requestPySB(res, 'kappa', message);
   }
 
+  assembleKappaIM(res) {
+    var message = "Assembling Kappa IM."
+    return this.requestPySB(res, 'kappa_im', message);
+  }
+
   get_ccle_mrna(gene_list, cell_line) {
     var input_txt = {'gene_list': gene_list,
                      'cell_lines': [cell_line]};
@@ -279,7 +284,7 @@ function download(exportName, exportObj){
     var data = atob( exportObj.substring( "data:image/png;base64,".length ) ),
     asArray = new Uint8Array(data.length);
     for( var i = 0, len = data.length; i < len; ++i ) {
-        asArray[i] = data.charCodeAt(i);    
+        asArray[i] = data.charCodeAt(i);
     }
     var blob = new Blob( [ asArray.buffer ], {type: "image/png"} );
   }
