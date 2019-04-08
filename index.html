@@ -68,18 +68,76 @@
     <!-- container-fluid : start -->
     <div class="container-fluid">
 
-    <div class=row>
-        <div class="col-sm-6 col-xs-6 padding-0">
-            <img src="indra_logo_v2.png" alt="INDRA logo" style="height:30px;"></img> <span class="hidden-xs" style="font:30px bold;text-align: center; vertical-align: middle;font-family: Roboto, sans-serif; ">INDRA-IPM</span>
-        </div>
-        <!-- <div class="col-sm-4 col-xs-4 hidden-xs pull-left padding-0" style="font:30px bold;">INDRA-IPM</div> -->
-      <div class='col-sm-6 col-xs-6 pull-right'>
-        <!-- Button trigger modal -->
-
-            <button type="button" class="btn btn-default btn-lg pull-right" data-toggle="modal" data-target="#menu">
-            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-            <b class="hidden-xs">MODEL OPTIONS</b>
-            </button>
+      <div class="row" style="max-height:40px; margin-bottom: 15px;">
+          <div class=row>
+              <div class="col-xs-4 col-sm-4 col-md-6 col-lg-5 padding-0">
+                  <img src="indra_logo_v2.png" alt="INDRA logo" style="height:38px;"></img> <span class="hidden-sm hidden-xs" style="font:30px bold;text-align: center; vertical-align: middle;font-family: Roboto, sans-serif; ">INDRA-IPM</span>
+              </div>
+              <!-- colorbar start -->
+          <div class="col-xs-6 col-sm-7 col-md-3 col-lg-4 float-right">
+              <div class='row small'>
+                <div class='col-xs-4'>
+                  <div class="row text-right">wildtype</div>
+                  <div class="row text-right">mutant</div>
+                </div>
+                <div class='col-xs-8'>
+                  <div class="row">
+                    <svg height='13px' width='100px'>
+                      <defs>
+                        <symbol id="s-rect">
+                          <rect width="10" height="10" x="2" y="2"/>
+                        </symbol>
+                      </defs>
+                      <text x="90" y="0" fill="black">wt</text>
+                      <use xlink:href="#s-rect" x="0" y="0" fill='#f7fcf5' stroke="black" stroke-width="1"/>
+                      <use xlink:href="#s-rect" x="10" y="0" fill='#e5f5e0' stroke="black" stroke-width="1"/>
+                      <use xlink:href="#s-rect" x="20" y="0" fill='#c7e9c0' stroke="black" stroke-width="1"/>
+                      <use xlink:href="#s-rect" x="30" y="0" fill='#a1d99b' stroke="black" stroke-width="1"/>
+                      <use xlink:href="#s-rect" x="40" y="0" fill='#74c476' stroke="black" stroke-width="1"/>
+                      <use xlink:href="#s-rect" x="50" y="0" fill='#41ab5d' stroke="black" stroke-width="1"/>
+                      <use xlink:href="#s-rect" x="60" y="0" fill='#238b45' stroke="black" stroke-width="1"/>
+                      <use xlink:href="#s-rect" x="70" y="0" fill='#006d2c' stroke="black" stroke-width="1"/>
+                      <use xlink:href="#s-rect" x="80" y="0" fill='#00441b' stroke="black" stroke-width="1"/>
+                    </svg>
+                  </div>
+                  <div class='row'>
+                      <svg height='13px' width='100px'>
+                        <defs>
+                          <symbol id="s-rect">
+                            <rect width="10" height="10" x="2" y="2"/>
+                          </symbol>
+                        </defs>
+                        <text x="90" y="0" fill="black">wt</text>
+                        <!-- ['#fff5eb','#fee6ce','#fdd0a2','#fdae6b','#fd8d3c','#f16913','#d94801','#a63603','#7f2704'] -->
+                        <use xlink:href="#s-rect" x="0" y="0" fill='#fff5eb' stroke="black" stroke-width="1"/>
+                        <use xlink:href="#s-rect" x="10" y="0" fill='#fee6ce' stroke="black" stroke-width="1"/>
+                        <use xlink:href="#s-rect" x="20" y="0" fill='#fdd0a2' stroke="black" stroke-width="1"/>
+                        <use xlink:href="#s-rect" x="30" y="0" fill='#fdae6b' stroke="black" stroke-width="1"/>
+                        <use xlink:href="#s-rect" x="40" y="0" fill='#fd8d3c' stroke="black" stroke-width="1"/>
+                        <use xlink:href="#s-rect" x="50" y="0" fill='#f16913' stroke="black" stroke-width="1"/>
+                        <use xlink:href="#s-rect" x="60" y="0" fill='#d94801' stroke="black" stroke-width="1"/>
+                        <use xlink:href="#s-rect" x="70" y="0" fill='#a63603' stroke="black" stroke-width="1"/>
+                        <use xlink:href="#s-rect" x="80" y="0" fill='#7f2704' stroke="black" stroke-width="1"/>
+                      </svg>
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-xs-4'></div>
+                <div class='col-xs-8'>expression</div>
+              </div>
+            </div>
+            <!-- colorbar end -->
+              <div class='col-sm-1 col-xs-1 col-md-2 col-lg-2 pull-right'>
+                  <!-- Button trigger modal -->
+        
+                      <button type="button" class="btn btn-default btn-lg pull-right" data-toggle="modal" data-target="#menu">
+                      <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                      <b class="hidden-xs">MODEL OPTIONS</b>
+                      </button>
+                </div>
+          </div></div></div>
+      </div>
 
 
 
@@ -430,8 +488,6 @@ TIAM activates RAC, which activates PAK.
         </div>
 
       </div>
-  </div>
-  <br>
   <div class="row">
     <div class="col-md-12">
 
@@ -444,18 +500,17 @@ TIAM activates RAC, which activates PAK.
   </div>
 </div>
   <div class="row" align="center">
-    <div class="col-md-10 text-right">
-              <b class="hidden-sm hidden-xs">Download</b>
-              <button id='downloadINDRA' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Download the model statements generated by INDRA in JSON format.">INDRA JSON</button>
-              <button id='downloadPySB' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA into an executable PySB model.">PySB</button>
-              <button id='downloadSBML' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a SBML model.">SBML</button>
-              <button id='downloadSBGN' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a SBGN model.">SBGN</button>
-              <button id='downloadBNGL' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a BNGL model.">BNGL</button>
-              <button id='downloadKappa' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a Kappa model.">Kappa</button>
-              <button id='downloadKappaIM' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download a Kappa influence map of the Kappa model generated by INDRA.">Kappa IM</button>
-              <button id='downloadCX' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a Cytoscape CX model.">CX</button>
-              <button id='downloadPNG' type="submit" class="btn btn-default" data-placement="bottom" data-toggle="tooltip" title="Download a high-resolution PNG image of the current model.">PNG</button>
-              <span>|</span>
+    <div class="col-md-12 visible-sm-block visible-xs-block">
+              <button id='downloadINDRA' type="submit" class="btn btn-default btn-sm hidden-xs small" data-placement="bottom" data-toggle="tooltip" title="Download the model statements generated by INDRA in JSON format.">INDRA JSON</button>
+              <button id='downloadPySB' type="submit" class="btn btn-default btn-sm hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA into an executable PySB model.">PySB</button>
+              <button id='downloadSBML' type="submit" class="btn btn-default btn-sm hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a SBML model.">SBML</button>
+              <button id='downloadSBGN' type="submit" class="btn btn-default btn-sm hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a SBGN model.">SBGN</button>
+              <button id='downloadBNGL' type="submit" class="btn btn-default btn-sm hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a BNGL model.">BNGL</button>
+              <button id='downloadKappa' type="submit" class="btn btn-default btn-sm hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a Kappa model.">Kappa</button>
+              <button id='downloadKappaIM' type="submit" class="btn btn-default btn-sm hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download a Kappa influence map of the Kappa model generated by INDRA.">Kappa IM</button>
+              <button id='downloadCX' type="submit" class="btn btn-default btn-sm hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a Cytoscape CX model.">CX</button>
+              <button id='downloadPNG' type="submit" class="btn btn-default btn-sm hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Download a high-resolution PNG image of the current model.">PNG</button>
+              <span class='hidden-xs'>|</span>
               <span rel="tooltip" data-placement="bottom" data-toggle="tooltip" title="Upload, download, and share the current model via NDEx.">
                   <button id='NDEX' type="submit" class="btn btn-default" data-toggle="modal" data-target="#ndexModal">NDEx</button>
               </span>
@@ -463,50 +518,27 @@ TIAM activates RAC, which activates PAK.
               <span rel="tooltip" data-placement="bottom" data-toggle="tooltip" title="Toggle force-directed layout.">
                 <input id="layoutToggle" type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-on="Forces" data-off="Off" autocomplete="off">
               </span>
-              
-    <!-- graph : end -->
-  </div>
-    <div class="col-md-2 text-right">
-        <span><font size="1"><b>WT expression</b> - low</font></span>
-        <svg height='8px' width='50px'>
-          <defs>
-            <symbol id="s-rect">
-              <rect width="5" height="5" x="2" y="2"/>
-             </symbol>
-          </defs>
-          <text x="90" y="0" fill="black">wt</text>
-          <use xlink:href="#s-rect" x="0" y="0" fill='#f7fcf5' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="5" y="0" fill='#e5f5e0' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="10" y="0" fill='#c7e9c0' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="15" y="0" fill='#a1d99b' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="20" y="0" fill='#74c476' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="25" y="0" fill='#41ab5d' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="30" y="0" fill='#238b45' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="35" y="0" fill='#006d2c' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="40" y="0" fill='#00441b' stroke="black" stroke-width="0.5"/>
-        </svg><span><font size="1">high</font></span>
-        <br/>
-        <span><font size="1"><b>Mut. expression</b> -  low</font></span>
-        <svg height='8px' width='50px'>
-          <defs>
-            <symbol id="s-rect">
-              <rect width="5" height="5" x="2" y="2"/>
-             </symbol>
-          </defs>
-          <text x="90" y="0" fill="black">wt</text>
-          <!-- ['#fff5eb','#fee6ce','#fdd0a2','#fdae6b','#fd8d3c','#f16913','#d94801','#a63603','#7f2704'] -->
-          <use xlink:href="#s-rect" x="0" y="0" fill='#fff5eb' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="5" y="0" fill='#fee6ce' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="10" y="0" fill='#fdd0a2' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="15" y="0" fill='#fdae6b' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="20" y="0" fill='#fd8d3c' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="25" y="0" fill='#f16913' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="30" y="0" fill='#d94801' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="35" y="0" fill='#a63603' stroke="black" stroke-width="0.5"/>
-          <use xlink:href="#s-rect" x="40" y="0" fill='#7f2704' stroke="black" stroke-width="0.5"/>
-        </svg><span><font size="1">high</font></span>
     </div>
-    <!-- colorbar end -->
+    <div class="col-md-12 visible-md-block visible-lg-block">
+        <b>Download</b>
+        <button id='downloadINDRA' type="submit" class="btn btn-default hidden-xs small" data-placement="bottom" data-toggle="tooltip" title="Download the model statements generated by INDRA in JSON format.">INDRA JSON</button>
+        <button id='downloadPySB' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA into an executable PySB model.">PySB</button>
+        <button id='downloadSBML' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a SBML model.">SBML</button>
+        <button id='downloadSBGN' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a SBGN model.">SBGN</button>
+        <button id='downloadBNGL' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a BNGL model.">BNGL</button>
+        <button id='downloadKappa' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a Kappa model.">Kappa</button>
+        <button id='downloadKappaIM' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download a Kappa influence map of the Kappa model generated by INDRA.">Kappa IM</button>
+        <button id='downloadCX' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Assemble and download the model statements generated by INDRA as a Cytoscape CX model.">CX</button>
+        <button id='downloadPNG' type="submit" class="btn btn-default hidden-xs" data-placement="bottom" data-toggle="tooltip" title="Download a high-resolution PNG image of the current model.">PNG</button>
+        <span class='hidden-xs'>|</span>
+        <span rel="tooltip" data-placement="bottom" data-toggle="tooltip" title="Upload, download, and share the current model via NDEx.">
+            <button id='NDEX' type="submit" class="btn btn-default" data-toggle="modal" data-target="#ndexModal">NDEx</button>
+        </span>
+        <span>|</span>
+        <span rel="tooltip" data-placement="bottom" data-toggle="tooltip" title="Toggle force-directed layout.">
+          <input id="layoutToggle" type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-on="Forces" data-off="Off" autocomplete="off">
+        </span>
+</div>
   </div>
   <!-- modal start -->
   <div class="modal fade" id="ndexModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
