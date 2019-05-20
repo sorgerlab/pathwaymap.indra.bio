@@ -269,7 +269,7 @@ $(function(){
 
 
   $("#downloadINDRA").click(function(){
-    download('stmts.json', JSON.stringify(stmts, null, 2));
+    download('stmts.json', JSON.stringify(stmts['statements'], null, 2));
   });
 
 
