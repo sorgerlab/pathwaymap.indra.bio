@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/pvtodorov/pathway_map_static#readme",
   "devDependencies": {
-    "bower": "^1.8.4",
+    "bower": "^1.8.8",
     "grunt": "^1.0.3",
     "grunt-wiredep": "^3.0.1"
   }
