@@ -63,7 +63,8 @@ class Requester {
       "url": indra_server_addr + "/"+ parser + "/process_text",
       "type": "POST",
       "dataType": "json",
-      "data": JSON.stringify(input_txt)
+      "data": JSON.stringify(input_txt),
+      "contentType": "application/json",
     };
     var message = ("Processing text.");
     stmts = this.make_request(ajax_params, message)
@@ -76,6 +77,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(res),
+      "contentType": "application/json",
     };
     var message = ("Grounding INDRA statements.");
     stmts = this.make_request(ajax_params, message)
@@ -88,6 +90,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(res),
+      "contentType": "application/json",
       }
     var message = ("Querying INDRA DB for statement evidence.");
     var stmts_db = this.make_request(ajax_params, message)
@@ -101,6 +104,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(res_json),
+      "contentType": "application/json",
     }
     var message = ("Assembling CytoscapeJS model.");
     var cyjs_model = this.make_request(ajax_params, message)
@@ -114,6 +118,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(res_json),
+      "contentType": "application/json",
     }
     var message = ("Assembling English language sentences for each statement.");
     var sentences = this.make_request(ajax_params, message)
@@ -127,6 +132,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(res_json),
+      "contentType": "application/json",
     }
     var message = ("Assembling Cytoscape CX model.");
     var cx_model = this.make_request(ajax_params, message)
@@ -151,6 +157,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(res_json),
+      "contentType": "application/json",
     }
     var message = ("Uploading model to NDEX.");
     var ndex_push = this.make_request(ajax_params, message)
@@ -164,6 +171,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(res_json),
+      "contentType": "application/json",
     }
     var message = ("Downloading model from NDEX.");
     var ndex_pull = this.make_request(ajax_params, message)
@@ -179,6 +187,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(res_json),
+      "contentType": "application/json",
     }
     var pysb_model = this.make_request(ajax_params, message)
     return pysb_model
@@ -222,6 +231,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(input_txt),
+      "contentType": "application/json",
      }
      var message = ("Retreiving CCLE mRNA expression.");
      var mrna = this.make_request(ajax_params, message);
@@ -236,6 +246,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(input_txt),
+      "contentType": "application/json",
     }
     var message = ("Getting CCLE CNA.");
     var cna = this.make_request(ajax_params, message);
@@ -250,6 +261,7 @@ class Requester {
       "type": "POST",
       "dataType": "json",
       "data": JSON.stringify(input_txt),
+      "contentType": "application/json",
      }
     var message = ("Getting CCLE mutation status.");
     var mutations = this.make_request(ajax_params, message);
